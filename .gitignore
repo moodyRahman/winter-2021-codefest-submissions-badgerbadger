@@ -142,6 +142,7 @@ yarn-error.log*
 
 # dependencies
 /node_modules
+/api/build
 /.pnp
 .pnp.js
 
