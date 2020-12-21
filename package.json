@@ -1,0 +1,19 @@
+{
+  "name": "codefest-2020",
+  "version": "1.0.0",
+  "description": "- [ ] We are a Daedalus Google Mentorship group\r - [ ] We are a beginner group (only completed CSCI 12700)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huntercodefest/winter-2021-codefest-submissions-badgerbadger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huntercodefest/winter-2021-codefest-submissions-badgerbadger/issues"
+  },
+  "homepage": "https://github.com/huntercodefest/winter-2021-codefest-submissions-badgerbadger#readme"
+}
