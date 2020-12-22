@@ -1,8 +1,13 @@
 # Hunter Codefest 2020-2021
 
 # Team Info
-### Team name: 
+### Team name: badgerBadger
 ### Team members (format: GitHub username, last name, first name):
+isabiiil, Abonitalla, Isabel
+moodyRahman, Rahman, Moududur
+Yu, Alex
+Correa, Monique
+Paul, Tanmoy
 
 ### Group info (check all that apply - add an X in the [ ])
 - [ ] We are a Daedalus Google Mentorship group
