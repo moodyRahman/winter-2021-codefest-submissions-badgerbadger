@@ -11,7 +11,7 @@ alexy4744, Yu, Alex
 
 Correa, Monique
 
-Paul, Tanmoy
+TanmoyPaul1, Paul, Tanmoy
 
 ### Group info (check all that apply - add an X in the [ ])
 - [ ] We are a Daedalus Google Mentorship group
