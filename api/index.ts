@@ -1,7 +1,11 @@
 import express from 'express';
 // rest of the code remains same
 const app = express();
+var cors = require('cors')
 const PORT = 8080;
+
+app.use(cors())
+
 
 app.get('/', (req, res) => 
 	res.send('Express + TypeScript Server')
