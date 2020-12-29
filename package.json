@@ -22,8 +22,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api-compile": "./node_modules/typescript/bin/tsc -w -p ./api",
-    "start-api": "./node_modules/nodemon/bin/nodemon.js api/build",
+    "compile": "./node_modules/typescript/bin/tsc -w -p ./api",
+    "api": "./node_modules/nodemon/bin/nodemon.js api/build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
