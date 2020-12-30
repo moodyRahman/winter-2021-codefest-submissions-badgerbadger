@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors'
-// rest of the code remains same
 const app = express();
 const PORT = 8080;
 

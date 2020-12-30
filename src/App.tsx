@@ -6,13 +6,14 @@ function App() {
   
   const [rawdata, setRawData] = useState({});
   
-  fetch('http://localhost:8080/rawdata')
-    .then(response => response.json())
-    .then(data => {
-      console.log("HERE");
-      console.log(data);
-      setRawData(data);
-    });
+  useEffect(() => {
+    fetch("http://localhost:8080/rawdata")
+      .then(res => res.json())
+      .then( (result) => {
+          setRawData(result);
+        }
+      )
+  }, [])
   
 
   return (
