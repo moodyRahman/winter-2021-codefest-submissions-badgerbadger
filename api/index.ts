@@ -34,8 +34,9 @@ const getMultiReqClasses = (classes: ReqData[]) => {
 	}
 
 	let formatted_out = []
-	for (var i in out)
+	for (var i in out) {
 		formatted_out.push([i, out[i]]);
+	}
 	return formatted_out;
 }
 
