@@ -32,7 +32,11 @@ const getMultiReqClasses = (classes: ReqData[]) => {
 			out[y]++;
 		}
 	}
-	return out;
+
+	let formatted_out = []
+	for (var i in out)
+		formatted_out.push([i, out[i]]);
+	return formatted_out;
 }
 
 app.get('/rawdata', (req, res) => {
