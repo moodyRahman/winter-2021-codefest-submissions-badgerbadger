@@ -22,12 +22,14 @@ const getMultiReqClasses = (classes: ReqData[]) => {
 	let out: any = {}
 	for (let x of classes) {
 		for (let y of x.fulfilling_classes) {
-			if (out.hasOwnProperty(y)) {
-				out[y]++;
-			}
-			else {
+			// if the class has not been seen before
+			if (!out.hasOwnProperty(y)) {
+				// set it to 0
 				out[y] = 0;
+				continue;
 			}
+			// increment it otherwise
+			out[y]++;
 		}
 	}
 	return out;
