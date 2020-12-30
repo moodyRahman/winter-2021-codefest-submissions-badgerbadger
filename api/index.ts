@@ -1,5 +1,6 @@
-import express from 'express';
+import express, { raw } from 'express';
 import cors from 'cors'
+import { match } from 'assert';
 const app = express();
 const PORT = 8080;
 
@@ -15,13 +16,30 @@ interface ReqData {
 	fulfilling_classes: string[];
 }
 
+// given an array of ReqData
+// which class fulfills multiple req's?
+// returns a JSON containing {classname:occurences}
+const getMultiReqClasses = (classes: ReqData[]) => {
+	let out: any = {}
+	for (let x of classes) {
+		for (let y of x.fulfilling_classes) {
+			if (out.hasOwnProperty(y)) {
+				out[y]++;
+			}
+			else {
+				out[y] = 0;
+			}
+		}
+	}
+	return out;
+}
 
 app.get('/rawdata', (req, res) => {
 
 	const rawdata: ReqData[] = [
 		{
 			requirement: "pluralism_and_diversity",
-			fulfilling_classes: ["mood101, mood102", "mood103"]
+			fulfilling_classes: ["mood101", "mood102", "mood103"]
 		},
 		{
 			requirement: "writing_intensive",
@@ -36,6 +54,10 @@ app.get('/rawdata', (req, res) => {
 			fulfilling_classes: ["monique202"]
 		}
 	]
+
+	console.log(
+		getMultiReqClasses(rawdata)
+	);
 	res.send(rawdata)
 });
 
