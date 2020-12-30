@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import "./Filters.scss";
 
+interface filterData {
+  category: string;
+  requirements: string[];
+}
+
 export default function Filters() {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState<filterData[]>([]);
+  const [highlight, setHighlight] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:8080/filters")
@@ -12,19 +18,24 @@ export default function Filters() {
       })
   }, [])
 
-  const filterList = JSON.parse(filters);
+  // changeHighlight(
 
   return (
     <div className="filters">
       <pre style={{ textAlign: "left" }}>
         {JSON.stringify(filters, null, 2)}
       </pre>
-      {filterList.map((item, i) => (
-        <tr key={i}>
-          <td>{item.category}</td>
-          <td>{item.requirement}</td>
-        </tr>
-      ))}
+      <div className="filter-row">
+        {filters.map((item, i) => (
+          <div key={i}>
+            <p className="header">{item.category}</p>
+            {item.requirements.map((item) => (
+              // <p onClick={() => changeHighlight()}>{item}</p>
+              <p>{item}</p>
+              ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

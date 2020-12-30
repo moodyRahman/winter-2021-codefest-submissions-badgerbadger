@@ -1,0 +1,23 @@
+@import "./../main.scss";
+
+.filters {
+  p {
+    padding: 8px 12px;
+    margin: 20px;
+    color: #FFFFFF;
+    background-color: #5F3394;
+    border: solid 1px #5F3394;
+    border-radius: 20px;
+    width: 200px;
+    cursor: pointer;
+  }
+
+  .header {
+    background-color: red;
+  }
+
+  .filter-row {
+    display: flex;
+    justify-content: center;
+  }
+}
