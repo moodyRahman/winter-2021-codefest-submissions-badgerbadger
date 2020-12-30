@@ -22,6 +22,5 @@ app.get('/rawdata', (req, res) => {
 
 
 app.listen(PORT, () => {
-	var d = new Date();
-	console.log(`⚡️[server][${d.toLocaleTimeString()}]: Server is running at https://localhost:${PORT}`);
+	console.log(`⚡️[server][${new Date().toLocaleTimeString()}]: Server is running at https://localhost:${PORT}`);
 });
