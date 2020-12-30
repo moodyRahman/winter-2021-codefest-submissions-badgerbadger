@@ -1,0 +1,25 @@
+@import "./../main.scss";
+
+.navbar {
+  background-color: #470056;
+  display: block;
+
+  .nav-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  p {
+    padding: 8px 12px;
+    margin: 20px;
+    color: #FFFFFF;
+    background-color: #5F3394;
+    border: solid 1px #5F3394;
+    border-radius: 20px;
+  }
+
+  .logo {
+    float: left;
+    width: 180px;
+  }
+}
