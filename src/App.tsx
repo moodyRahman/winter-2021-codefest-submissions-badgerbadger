@@ -18,7 +18,10 @@ function App() {
 
   return (
     <div className="App">
-      {JSON.stringify(rawdata)}
+      <pre>
+
+      {JSON.stringify(rawdata, null, 2)}
+      </pre>
     </div>
   );
 }
