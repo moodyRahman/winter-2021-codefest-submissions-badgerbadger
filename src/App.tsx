@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <pre>
+      <pre style={{textAlign:"left"}}>
 
       {JSON.stringify(rawdata, null, 2)}
       </pre>
