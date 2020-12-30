@@ -15,13 +15,37 @@ interface ReqData {
 	fulfilling_classes: string[];
 }
 
+// given an array of ReqData
+// which class fulfills multiple req's?
+// returns a JSON containing {classname:occurences}
+const getMultiReqClasses = (classes: ReqData[]) => {
+	let out: any = {}
+	for (let x of classes) {
+		for (let y of x.fulfilling_classes) {
+			// if the class has not been seen before
+			if (!out.hasOwnProperty(y)) {
+				// set it to 0
+				out[y] = 0;
+				continue;
+			}
+			// increment it otherwise
+			out[y]++;
+		}
+	}
+
+	let formatted_out = []
+	for (var i in out) {
+		formatted_out.push([i, out[i]]);
+	}
+	return formatted_out;
+}
 
 app.get('/rawdata', (req, res) => {
 
 	const rawdata: ReqData[] = [
 		{
 			requirement: "pluralism_and_diversity",
-			fulfilling_classes: ["mood101, mood102", "mood103"]
+			fulfilling_classes: ["mood101", "mood102", "mood103"]
 		},
 		{
 			requirement: "writing_intensive",
@@ -36,6 +60,10 @@ app.get('/rawdata', (req, res) => {
 			fulfilling_classes: ["monique202"]
 		}
 	]
+
+	console.log(
+		getMultiReqClasses(rawdata)
+	);
 	res.send(rawdata)
 });
 
