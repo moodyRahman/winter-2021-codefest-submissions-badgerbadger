@@ -32,7 +32,7 @@ app.get('/rawdata', (req, res) => {
 			fulfilling_classes: ["alex101", "monique202"]
 		},
 		{
-			requirement:"major",
+			requirement: "major",
 			fulfilling_classes: ["monique202"]
 		}
 	]
