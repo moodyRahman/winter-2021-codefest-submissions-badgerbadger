@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
+
+import { FilterData } from "@shared/interfaces/filter-data";
+
 import "./Filters.scss";
 
-interface filterData {
-  category: string;
-  requirements: string[];
-}
-
 export default function Filters() {
-  const [filters, setFilters] = useState<filterData[]>([]);
+  const [filters, setFilters] = useState<FilterData[]>([]);
   const [highlight, setHighlight] = useState(false);
 
   useEffect(() => {

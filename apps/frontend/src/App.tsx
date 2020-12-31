@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+
 import Navbar from "./components/Navbar";
 import Filters from "./components/Filters";
+
 import './App.css';
 
-function App() {
+import { Class } from "@shared/interfaces/class";
 
-  const [rawdata, setRawData] = useState({});
+function App() {
+  const [rawdata, setRawData] = useState<Partial<Class>>({});
 
   useEffect(() => {
     fetch("http://localhost:8080/rawdata")
