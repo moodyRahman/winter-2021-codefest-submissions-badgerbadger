@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import Navbar from "./components/Navbar";
+import Filters from "./components/Filters";
 import './App.css';
 
 function App() {
@@ -18,9 +19,10 @@ function App() {
   return (
     <div className="App">
       <pre style={{ textAlign: "left" }}>
-
         {JSON.stringify(rawdata, null, 2)}
       </pre>
+      <Navbar />
+      <Filters />
     </div>
   );
 }
