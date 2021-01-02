@@ -2,6 +2,7 @@ require("dotenv").config(); // load environment variables asap
 
 import cors from "cors";
 import express from "express";
+import bodyParser from "body-parser"
 
 import auth from "./routes/auth";
 import filter from "./routes/filter";
@@ -10,6 +11,7 @@ import debug from "./routes/debug"
 
 const app = express();
 
+app.use(bodyParser.json());
 app.use(cors());
 
 app.get("/", (_req, res) => res.send("Express + TypeScript Server"));
