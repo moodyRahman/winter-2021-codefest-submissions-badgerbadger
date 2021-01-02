@@ -9,6 +9,10 @@ import filter from "./routes/filter";
 import rawData from "./routes/raw-data";
 import debug from "./routes/debug"
 
+import { dbconnect } from "./database/database";
+
+dbconnect();
+
 const app = express();
 
 app.use(bodyParser.json());
