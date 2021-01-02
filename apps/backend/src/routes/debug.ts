@@ -2,8 +2,9 @@ import { Router } from "express";
 
 const route = Router();
 
-route.post("/debug", (_req, res) => {	
-	res.send(_req.body);
+route.post("/debug", (req, res) => {	
+	console.log(req.body);
+	res.send(req.body);
 });
 
 route.get("/debug", (_req, res) => {
