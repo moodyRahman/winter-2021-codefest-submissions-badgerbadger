@@ -1,10 +1,8 @@
-require('dotenv').config()
 import Mongoose from "mongoose";
 
 let database: Mongoose.Connection;
 
-const dbconnect = () => {
-	const uri: string = `${process.env.MONGO_URI}`;
+const dbconnect = (uri:string) => {
 
 	if (database){
 		return true;

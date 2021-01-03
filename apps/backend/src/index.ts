@@ -11,7 +11,7 @@ import debug from "./routes/debug"
 
 import dbconnect from "./database";
 
-dbconnect();
+dbconnect(`${process.env.MONGO_URI}`);
 
 const app = express();
 
