@@ -3,15 +3,12 @@ require("dotenv").config(); // load environment variables asap
 import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser"
+import Mongoose from "mongoose";
 
 import auth from "./routes/auth";
 import filter from "./routes/filter";
 import rawData from "./routes/raw-data";
 import debug from "./routes/debug"
-
-import dbconnect from "./database";
-
-dbconnect(`${process.env.MONGO_URI}`);
 
 const app = express();
 
@@ -24,11 +21,24 @@ app.use("/auth", auth);
 
 app.use(filter);
 app.use(rawData);
-app.use(debug)
+app.use(debug);
 
-app.listen(process.env.PORT, () => {
-  console.log(
-    `⚡[server][${new Date().toLocaleTimeString()}]:`,
-    `running on https://localhost:${process.env.PORT}`
-  );
-});
+
+(async () => {
+  await Mongoose.connect(`${process.env.MONGO_URI}`, {
+      useNewUrlParser: true,
+      useFindAndModify: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+  }).then(()=>{
+    console.log(`🐵[database][${new Date().toLocaleTimeString()}]: connected to remote`);
+  })
+  .then(()=> {
+    app.listen(process.env.PORT, () => {
+      console.log(
+        `⚡[server][${new Date().toLocaleTimeString()}]:`,
+        `running on https://localhost:${process.env.PORT}`
+      );
+    });
+  });
+}) ();
