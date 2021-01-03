@@ -3,7 +3,7 @@ import Mongoose from "mongoose";
 
 let database: Mongoose.Connection;
 
-export const dbconnect = () => {
+const dbconnect = () => {
 	const uri: string = `${process.env.MONGO_URI}`;
 
 	if (database){
@@ -27,3 +27,5 @@ export const dbconnect = () => {
 		console.log("Error connecting to database");
 	});
 }
+
+export default dbconnect;

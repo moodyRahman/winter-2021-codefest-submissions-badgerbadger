@@ -9,7 +9,7 @@ import filter from "./routes/filter";
 import rawData from "./routes/raw-data";
 import debug from "./routes/debug"
 
-import { dbconnect } from "./database";
+import dbconnect from "./database";
 
 dbconnect();
 
