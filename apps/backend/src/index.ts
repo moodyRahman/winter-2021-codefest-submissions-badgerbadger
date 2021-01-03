@@ -23,22 +23,27 @@ app.use(filter);
 app.use(rawData);
 app.use(debug);
 
+Mongoose.connection.on("error", err => {
+	console.log(err);
+});
+
+Mongoose.connection.once("open", () => {
+	console.log(`🐵[database][${new Date().toLocaleTimeString()}]: connected to remote`);
+});
 
 (async () => {
-  await Mongoose.connect(`${process.env.MONGO_URI}`, {
-      useNewUrlParser: true,
-      useFindAndModify: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-  }).then(()=>{
-    console.log(`🐵[database][${new Date().toLocaleTimeString()}]: connected to remote`);
-  })
-  .then(()=> {
-    app.listen(process.env.PORT, () => {
-      console.log(
-        `⚡[server][${new Date().toLocaleTimeString()}]:`,
-        `running on https://localhost:${process.env.PORT}`
-      );
-    });
-  });
+	await Mongoose.connect(`${process.env.MONGO_URI}`, {
+			useNewUrlParser: true,
+			useFindAndModify: true,
+			useUnifiedTopology: true,
+			useCreateIndex: true,
+	})
+
+	app.listen(process.env.PORT, () => {
+		console.log(
+			`⚡[server][${new Date().toLocaleTimeString()}]:`,
+			`running on https://localhost:${process.env.PORT}`
+		);
+	});
+
 }) ();
