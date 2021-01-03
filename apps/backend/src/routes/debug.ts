@@ -1,6 +1,6 @@
 import { Router } from "express";
-import {User} from "../database/models"
-import { IUser } from "../database/user/user.schema";
+import {User, IUser} from "../database/models"
+// import { IUser } from "../database/user/user.schema";
 const route = Router();
 
 route.post("/debug", (req, res) => {	
