@@ -1,11 +1,12 @@
 import { Router } from "express";
 import {User} from "../database/models"
+import { IUser } from "../database/user/user.schema";
 const route = Router();
 
 route.post("/debug", (req, res) => {	
 	console.log(req.body);
 
-	const moody = new User(req.body);
+	const moody:IUser = new User(req.body);
 
 	moody.save( (err, moody) => {
 		if (err){
@@ -17,7 +18,9 @@ route.post("/debug", (req, res) => {
 });
 
 route.get("/debug", (_req, res) => {
-	res.send("aye this route is alive and well");
+	User.find({}, (err, docs) => {
+		res.send(docs)
+	})
 });
 
 export default route;
