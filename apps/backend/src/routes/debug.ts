@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {User} from "../database/models/models"
+import {User} from "../database/models"
 const route = Router();
 
 route.post("/debug", (req, res) => {	
