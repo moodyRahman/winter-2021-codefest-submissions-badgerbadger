@@ -28,7 +28,7 @@ app.use(debug)
 
 app.listen(process.env.PORT, () => {
   console.log(
-    `⚡️[server][${new Date().toLocaleTimeString()}]:`,
-    `Server is running at https://localhost:${process.env.PORT}`
+    `⚡[server][${new Date().toLocaleTimeString()}]:`,
+    `running on https://localhost:${process.env.PORT}`
   );
 });

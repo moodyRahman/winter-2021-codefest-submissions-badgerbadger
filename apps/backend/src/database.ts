@@ -18,11 +18,13 @@ const dbconnect = (uri:string) => {
 	database = Mongoose.connection;
 
 	database.once("open", async () => {
-		console.log("Connected to database");
+		console.log(
+			`🐵[database][${new Date().toLocaleTimeString()}]: connected to remote`
+		);
 	});
 
 	database.on("error", () => {
-		console.log("Error connecting to database");
+		console.log(`🐵[database][${new Date().toLocaleTimeString()}]: connection failed`);
 	});
 }
 
