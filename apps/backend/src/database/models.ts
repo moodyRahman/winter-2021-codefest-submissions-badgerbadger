@@ -1,6 +1,6 @@
-import {UserSchema, IUser} from "./user/user.schema"
+import {UserSchema, IUser} from "./schemas/user.schema"
 
 import {model} from "mongoose"
 
 export const User = model<IUser>('User', UserSchema);
-export {IUser} from "./user/user.schema";
+export {IUser} from "./schemas/user.schema";
