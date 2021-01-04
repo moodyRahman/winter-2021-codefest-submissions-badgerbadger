@@ -7,7 +7,7 @@ const route = Router();
 route.get("/filters", (_req, res) => {
   const filters: FilterData[] = [
     {
-      category: "requiredCore",
+      category: "Required Core",
       requirements: [
         "English Composition 1",
         "English Composition 2",
@@ -16,7 +16,7 @@ route.get("/filters", (_req, res) => {
       ],
     },
     {
-      category: "flexibleCommonCore",
+      category: "Flexible Common Core",
       requirements: [
         "World Cultures and Global Issues",
         "US Experiences in Its Diversity",
@@ -26,7 +26,7 @@ route.get("/filters", (_req, res) => {
       ],
     },
     {
-      category: "Pluralsim and Diversity",
+      category: "Pluralism and Diversity",
       requirements: [
         "Group A: Non-European Societies",
         "Group B: Groups in the USA",

@@ -13,11 +13,20 @@
   }
 
   .header {
-    background-color: red;
+    background-color: #470056;
   }
 
   .filter-row {
     display: flex;
     justify-content: center;
+  }
+
+  .selected {
+    background-color: #5F3394;
+  }
+
+  .deselected {
+    background-color: #E6E6E6;
+    color: #000000;
   }
 }
