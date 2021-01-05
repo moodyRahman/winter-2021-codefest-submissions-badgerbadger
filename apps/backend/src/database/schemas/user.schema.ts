@@ -8,8 +8,14 @@ export interface IUser extends Document {
 
 
 export const UserSchema: Schema = new Schema({
-	username: String,
-	hashed_password: String
+	username: {
+		type: String,
+		required: true
+	},
+	hashed_password: {
+		type: String,
+		required: true
+	}
 });
 
 
