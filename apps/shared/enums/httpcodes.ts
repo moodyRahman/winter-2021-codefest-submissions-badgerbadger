@@ -1,4 +1,4 @@
-export enum HTTP_CODE{
+export const enum HTTP_CODE{
 	OK=200,
 	FORBIDDEN=403,
 	NOT_FOUND=404

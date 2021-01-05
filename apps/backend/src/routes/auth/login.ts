@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {User, IUser} from "../../database/models"
 // TODO: fix the relative import, @shared/enums/httpcodes does not work
-import { HTTP_CODE } from "../../../../shared/enums/httpcodes";
+import { HTTP_CODE } from "@shared/enums/httpcodes";
 
 const route = Router();
 

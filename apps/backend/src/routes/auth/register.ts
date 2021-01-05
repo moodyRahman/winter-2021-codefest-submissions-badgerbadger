@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { User, IUser } from "../../database/models"
-import { HTTP_CODE } from "../../../../shared/enums/httpcodes";
+import { HTTP_CODE } from "@shared/enums/httpcodes";
+
 const route = Router();
 
 route.post("/register", (req, res) => {
