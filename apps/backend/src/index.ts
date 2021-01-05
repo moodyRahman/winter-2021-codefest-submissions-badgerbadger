@@ -1,4 +1,5 @@
 require("dotenv").config(); // load environment variables asap
+require("module-alias/register");
 
 import cors from "cors";
 import express from "express";
