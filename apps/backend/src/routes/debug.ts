@@ -3,22 +3,23 @@ import {User, IUser} from "../database/models"
 
 const route = Router();
 
-route.post("/debug", (req, res) => {	
-	console.log(req.body);
+route.post("/debug", (_req, res) => {
+	// console.log(_req.body);
 
-	const moody:IUser = new User(req.body);
+	const newuser:IUser = new User(_req.body);
 
-	moody.save( (err, moody) => {
+	newuser.save( (err, newuser) => {
 		if (err){
 			return console.log(err);
 		}
 	});
 	
-	res.send(req.body);
+	res.send(_req.body);
 });
 
 route.get("/debug", (_req, res) => {
 	User.find({}, (err, docs) => {
+		// console.log(docs);
 		res.send(docs)
 	})
 });
