@@ -1,7 +1,9 @@
 import { Router } from "express";
 import {User, IUser} from "../../database/models"
+import jwt from "jsonwebtoken";
 // TODO: fix the relative import, @shared/enums/httpcodes does not work
 import { HTTP_CODE } from "@shared/enums/httpcodes";
+
 
 const route = Router();
 
@@ -18,7 +20,14 @@ route.post("/login", (req, res) => {
 		}
 
 		// TODO: calculate JWT and return here
-		res.send({ status: HTTP_CODE.OK, token: "sjkdfnhskjfsd" });
+		res.send({ 
+			status: HTTP_CODE.OK, 
+			token: jwt.sign(
+				{ username: docs[0].username },
+				'secret',       // TODO: MAKE THIS AN ACTUAL SECRET LATER
+				{ algorithm: "HS512", expiresIn:'1h' }
+			)
+		});
 
 	})
 
