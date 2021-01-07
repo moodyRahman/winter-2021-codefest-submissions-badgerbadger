@@ -19,6 +19,8 @@ export const UserSchema: Schema = new Schema({
   },
 });
 
+UserSchema.pre;
+
 UserSchema.pre<IUser>("save", function (next) {
   if (!this.isModified("password")) return next();
 

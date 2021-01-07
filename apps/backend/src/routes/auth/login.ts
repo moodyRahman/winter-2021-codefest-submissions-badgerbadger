@@ -1,5 +1,7 @@
 import { Router } from "express";
+
 import { User, IUser } from "../../database/models";
+
 import jwt from "jsonwebtoken";
 // TODO: fix the relative import, @shared/enums/httpcodes does not work
 import { HTTP_CODE } from "@shared/enums/httpcodes";
@@ -31,10 +33,6 @@ route.post("/login", (req, res) => {
       ),
     });
   });
-});
-
-route.get("/login", (req, res) => {
-  res.send("found /login");
 });
 
 export default route;
