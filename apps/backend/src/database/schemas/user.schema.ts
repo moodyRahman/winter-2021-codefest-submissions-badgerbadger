@@ -6,6 +6,8 @@ import { model } from "mongoose";
 export interface IUser extends Document {
   password: string;
   username: string;
+
+  comparePassword(plainText: string): Promise<boolean>;
 }
 
 export const UserSchema: Schema = new Schema({
@@ -19,18 +21,20 @@ export const UserSchema: Schema = new Schema({
   },
 });
 
-UserSchema.pre;
-
-UserSchema.pre<IUser>("save", function (next) {
+UserSchema.pre<IUser>("save", async function (next) {
   if (!this.isModified("password")) return next();
 
-  bcrypt.hash(this.password, 12, (err, hash) => {
-    if (err) return next(err);
-
-    this.password = hash;
+  try {
+    this.password = await bcrypt.hash(this.password, 12);
 
     next();
-  });
+  } catch (error) {
+    next(error);
+  }
 });
+
+UserSchema.methods.comparePassword = function (this: IUser, plainText: string) {
+  return bcrypt.compare(plainText, this.password);
+};
 
 export const User = model<IUser>("User", UserSchema);
