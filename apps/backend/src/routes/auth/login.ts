@@ -11,6 +11,12 @@ import jwt from "jsonwebtoken";
 
 const route = Router();
 
+const { JWT_SECRET } = process.env;
+
+if (!JWT_SECRET) {
+  throw new Error("Missing JWT_SECRET in environment");
+}
+
 route.post(
   "/login",
   handler((req) => {
@@ -35,11 +41,10 @@ route.post(
 
     return {
       status: StatusCodes.OK,
-      token: jwt.sign(
-        { username: user.username },
-        "secret", // TODO: MAKE THIS AN ACTUAL SECRET LATER
-        { algorithm: "HS512", expiresIn: "1h" }
-      ),
+      token: jwt.sign({ username: user.username }, JWT_SECRET, {
+        algorithm: "HS512",
+        expiresIn: "1h",
+      }),
     };
   })
 );
