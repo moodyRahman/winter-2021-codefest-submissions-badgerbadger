@@ -1,1 +1,1 @@
-export {IUser, User} from "./schemas/user.schema";
+export { IUser, User } from "./schemas/user.schema";

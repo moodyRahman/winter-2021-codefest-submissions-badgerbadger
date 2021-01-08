@@ -1,38 +1,44 @@
+import createError from "http-errors";
+
 import { Router } from "express";
-import { User, IUser } from "../../database/models"
-import { HTTP_CODE } from "@shared/enums/httpcodes";
+import { StatusCodes } from "http-status-codes";
+
+import { User } from "../../database/models";
+
+import handler from "../../utils/handler";
 
 const route = Router();
 
-route.post("/register", (req, res) => {
-	// since User.find is one line of code, the body entirely consists of callbacks, 
-	User.find({ username: req.body.username }, (err, docs) => {
-		if (err) {
-			console.log(err);
-			return res.send({ status: HTTP_CODE.INTERNAL_ERROR, message: "internal error" })
-		}
+route.post(
+  "/register",
+  handler((req) => {
+    const { password, username } = req.body;
 
-		// if the user does exist, return error
-		if (docs.length != 0) {
-			return res.send({ status: HTTP_CODE.FORBIDDEN, message: "user already exists" })
-		}
+    if (!password) {
+      throw new createError.BadRequest("You must input your password!");
+    }
 
+    if (!username) {
+      throw new createError.BadRequest("You must input your username!");
+    }
+  }),
+  handler(async (req) => {
+    const { password, username } = req.body;
 
-		new User({
-				username:req.body.username,
-				hashed_password:req.body.password
-			})
-		.save((err, newuser) => {
-			if (err) {
-				console.log(err);
-				return res.send({ status: HTTP_CODE.INTERNAL_ERROR, message: "internal error" })
-			}
-		});
+    if (await User.exists({ username })) {
+      throw new createError.Conflict("Username already exists!");
+    }
 
-		return res.send({status:HTTP_CODE.OK, message: "user created!"});
+    const user = await new User({ password, username }).save();
 
-	})
-
-});
+    return {
+      status: StatusCodes.OK,
+      user: {
+        // TODO: hide password field from mongoose doc
+        username: user.username,
+      },
+    };
+  })
+);
 
 export default route;
