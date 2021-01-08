@@ -1,10 +1,11 @@
+// TODO: Validate environment variables
 require("dotenv").config(); // load environment variables asap
 require("module-alias/register");
 
+import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
-import bodyParser from "body-parser";
-import Mongoose from "mongoose";
+import mongoose from "mongoose";
 
 import auth from "./routes/auth";
 import filter from "./routes/filter";
@@ -12,6 +13,12 @@ import rawData from "./routes/raw-data";
 import debug from "./routes/debug";
 
 const app = express();
+
+const { MONGO_URI } = process.env;
+
+if (!MONGO_URI) {
+  throw new Error("Missing MONGO_URI in environment");
+}
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -24,23 +31,19 @@ app.use(filter);
 app.use(rawData);
 app.use(debug);
 
-Mongoose.connection.on("error", (err) => {
-  console.log(err);
-});
+mongoose.connection.on("error", console.error);
 
-Mongoose.connection.once("open", () => {
+(async () => {
+  await mongoose.connect(MONGO_URI, {
+    useCreateIndex: true,
+    useFindAndModify: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
   console.log(
     `🐵[database][${new Date().toLocaleTimeString()}]: connected to remote`
   );
-});
-
-(async () => {
-  await Mongoose.connect(`${process.env.MONGO_URI}`, {
-    useNewUrlParser: true,
-    useFindAndModify: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  });
 
   app.listen(process.env.PORT, () => {
     console.log(
