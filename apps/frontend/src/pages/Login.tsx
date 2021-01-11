@@ -6,7 +6,7 @@ export default function Login() {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
-	const login = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+	const login = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
 		const data = {
 			username: username,
@@ -30,18 +30,17 @@ export default function Login() {
 	}
 
 	return (
-		<>
-		<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
-		<br></br>
+		<form onSubmit={login}>
+			<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
+			<br></br>
 
-		
-		<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
-		<br></br>
+
+			<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
+			<br></br>
 		contents of the state variable: {username}, {password}
 		
-		<button type="submit" onClick={login}>LOGIN</button>
-
-		</>
+			<input type="submit" value="Submit" />
+		</form>
 
 	)
 }
