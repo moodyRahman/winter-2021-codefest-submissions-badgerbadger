@@ -1,0 +1,47 @@
+import { useState } from "react"
+
+
+
+export default function Login() {
+	const [username, setUsername] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
+
+	const login = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+		event.preventDefault();
+		const data = {
+			username: username,
+			password: password
+		};
+		fetch("http://localhost:8080/auth/login", {
+			method: 'POST', // *GET, POST, PUT, DELETE, etc
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data) // body data type must match "Content-Type" header
+		})
+		.then(res => res.json())
+		.then(response => {
+			if (response.status === 200) {
+				return console.log("LOGGED IN")
+			}
+			return console.log("DEATH");
+		})
+
+	}
+
+	return (
+		<>
+		<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
+		<br></br>
+
+		
+		<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
+		<br></br>
+		contents of the state variable: {username}, {password}
+		
+		<button type="submit" onClick={login}>LOGIN</button>
+
+		</>
+
+	)
+}
