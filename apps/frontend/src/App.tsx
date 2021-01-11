@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Filters from "./components/Filters";
 import Login from "./pages/Login"
+import Register from "./pages/Register"
 import './App.css';
 
 
@@ -22,7 +23,10 @@ function App() {
         {/* {JSON.stringify(rawdata, null, 2)} */}
       </pre>
       <Navbar />
+      <div style={{display:"flex", flexDirection:"row", margin:100}}>
       <Login />
+      <Register />
+      </div>
       <Filters />
     </div>
   );
