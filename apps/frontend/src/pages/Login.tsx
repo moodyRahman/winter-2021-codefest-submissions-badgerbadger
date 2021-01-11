@@ -5,6 +5,7 @@ import { useState } from "react"
 export default function Login() {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const [token, setToken] = useState<string>("");
 
 	const login = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
@@ -22,8 +23,10 @@ export default function Login() {
 		.then(res => res.json())
 		.then(response => {
 			if (response.status === 200) {
+				setToken(response.token);
 				return console.log("LOGGED IN")
 			}
+			setToken("");
 			return console.log("DEATH");
 		})
 
@@ -37,7 +40,9 @@ export default function Login() {
 
 			<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
 			<br></br>
-		contents of the state variable: {username}, {password}
+
+			{token ? username + " IS LOGGED IN" : username + " LOGGED OUT"} 
+			<br/>
 		
 			<input type="submit" value="Submit" />
 		</form>
