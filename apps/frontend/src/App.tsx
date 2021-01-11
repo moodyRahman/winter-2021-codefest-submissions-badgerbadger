@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-
 import Navbar from "./components/Navbar";
 import Filters from "./components/Filters";
 import Login from "./pages/Login"
 import './App.css';
 
-import { Class } from "@shared/interfaces/class";
 
 function App() {
   // const [rawdata, setRawData] = useState<Partial<Class>>({});
