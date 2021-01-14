@@ -17,6 +17,7 @@ route.post(
   "/login",
   handler(async (req) => {
     const { password, username } = await validate(req.body);
+
     const user: UserDocument = await UserModel.findOne({ username });
 
     if (!user || !(await user.comparePassword(password))) {
