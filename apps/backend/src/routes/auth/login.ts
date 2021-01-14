@@ -1,13 +1,12 @@
 import createError from "http-errors";
+import jwt from "jsonwebtoken";
 
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
-import { User, IUser } from "../../database/models";
+import { UserDocument, UserModel } from "../../schemas/user.schema";
 
 import handler from "../../utils/handler";
-
-import jwt from "jsonwebtoken";
 
 const route = Router();
 
@@ -33,7 +32,7 @@ route.post(
   handler(async (req) => {
     const { password, username } = req.body;
 
-    const user: IUser = await User.findOne({ username });
+    const user: UserDocument = await UserModel.findOne({ username });
 
     if (!user || !(await user.comparePassword(password))) {
       throw new createError.Unauthorized("Invalid login credentials");

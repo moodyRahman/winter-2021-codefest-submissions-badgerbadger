@@ -3,7 +3,7 @@ import createError from "http-errors";
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
-import { User } from "../../database/models";
+import { UserModel } from "../../schemas/user.schema";
 
 import handler from "../../utils/handler";
 
@@ -25,11 +25,11 @@ route.post(
   handler(async (req) => {
     const { password, username } = req.body;
 
-    if (await User.exists({ username })) {
+    if (await UserModel.exists({ username })) {
       throw new createError.Conflict("Username already exists!");
     }
 
-    const user = await new User({ password, username }).save();
+    const user = await UserModel.create({ password, username });
 
     return {
       status: StatusCodes.OK,

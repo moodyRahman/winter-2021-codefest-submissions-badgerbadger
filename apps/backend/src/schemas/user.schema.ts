@@ -1,15 +1,17 @@
 import bcrypt from "bcrypt";
 
-import mongoose, { Document, Schema } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 
-export interface IUser extends Document {
+export interface User {
   password: string;
   username: string;
+}
 
+export interface UserDocument extends User, Document {
   comparePassword(plainText: string): Promise<boolean>;
 }
 
-export const UserSchema: Schema = new Schema({
+const UserSchema = new Schema({
   password: {
     required: true,
     type: String,
@@ -20,7 +22,7 @@ export const UserSchema: Schema = new Schema({
   },
 });
 
-UserSchema.pre<IUser>("save", async function (next) {
+UserSchema.pre<UserDocument>("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   try {
@@ -35,8 +37,8 @@ UserSchema.pre<IUser>("save", async function (next) {
   }
 });
 
-UserSchema.methods.comparePassword = function (this: IUser, plainText: string) {
+UserSchema.methods.comparePassword = function (this: User, plainText: string) {
   return bcrypt.compare(plainText, this.password);
 };
 
-export const User = mongoose.model<IUser>("User", UserSchema);
+export const UserModel = model<UserDocument>("User", UserSchema);
