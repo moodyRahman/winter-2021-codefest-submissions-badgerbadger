@@ -2,7 +2,6 @@ import createError from "http-errors";
 import jwt from "jsonwebtoken";
 
 import { Router } from "express";
-import { StatusCodes } from "http-status-codes";
 
 import config from "../../config";
 
@@ -26,8 +25,7 @@ route.post(
     }
 
     return {
-      status: StatusCodes.OK,
-      token: jwt.sign({ username: user.username }, config.get("jwt_secret"), {
+      accessToken: jwt.sign({ user: user.id }, config.get("jwt_secret"), {
         algorithm: "HS512",
         expiresIn: "1h",
       }),

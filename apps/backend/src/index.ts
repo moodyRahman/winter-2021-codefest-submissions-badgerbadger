@@ -8,9 +8,10 @@ import mongoose from "mongoose";
 import config from "./config";
 
 import auth from "./routes/auth";
+import debug from "./routes/debug";
 import filter from "./routes/filter";
 import rawData from "./routes/raw-data";
-import debug from "./routes/debug";
+import semesters from "./routes/semesters";
 
 const app = express();
 
@@ -21,9 +22,10 @@ app.get("/", (_req, res) => res.send("Express + TypeScript Server"));
 
 app.use("/auth", auth);
 
+app.use(debug);
 app.use(filter);
 app.use(rawData);
-app.use(debug);
+app.use(semesters);
 
 mongoose.connection.on("error", console.error);
 
