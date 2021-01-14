@@ -2,14 +2,13 @@ import bcrypt from "bcrypt";
 
 import { Document, Schema, model } from "mongoose";
 
+import { User } from "@shared/interfaces/user";
+
 import config from "../config";
 
-export interface User {
-  password: string;
-  username: string;
-}
-
 export interface UserDocument extends User, Document {
+  password: string;
+
   comparePassword(plainText: string): Promise<boolean>;
 }
 
@@ -36,7 +35,10 @@ UserSchema.pre<UserDocument>("save", async function (next) {
   }
 });
 
-UserSchema.methods.comparePassword = function (this: User, plainText: string) {
+UserSchema.methods.comparePassword = function (
+  this: UserDocument,
+  plainText: string
+) {
   return bcrypt.compare(plainText, this.password);
 };
 

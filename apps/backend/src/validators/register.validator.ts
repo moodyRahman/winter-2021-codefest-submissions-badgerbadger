@@ -1,9 +1,6 @@
 import Joi from "joi";
 
-export interface RegisterDto {
-  password: string;
-  username: string;
-}
+import { RegisterDto } from "@shared/dtos/register.dto";
 
 export const validate = (payload: any): Promise<RegisterDto> =>
   Joi.object<RegisterDto>({
