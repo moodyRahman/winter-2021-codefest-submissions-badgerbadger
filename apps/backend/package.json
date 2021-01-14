@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -b",
-    "start": "tsnd --respawn ./src/index.ts"
+    "start": "tsnd --project ./tsconfig.json --respawn ./src/index.ts"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",

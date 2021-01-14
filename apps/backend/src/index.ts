@@ -7,6 +7,8 @@ import mongoose from "mongoose";
 
 import config from "./config";
 
+import authCheck from "./middlewares/auth.middleware";
+
 import auth from "./routes/auth";
 import debug from "./routes/debug";
 import filter from "./routes/filter";
@@ -21,11 +23,11 @@ app.use(cors());
 app.get("/", (_req, res) => res.send("Express + TypeScript Server"));
 
 app.use("/auth", auth);
+app.use("/semesters", authCheck, semesters);
 
 app.use(debug);
 app.use(filter);
 app.use(rawData);
-app.use(semesters);
 
 mongoose.connection.on("error", console.error);
 

@@ -1,6 +1,6 @@
 # Configs
-apps/backend/src/configs/*.json
-!apps/backend/src/configs/example.json
+apps/backend/configs/*.json
+!apps/backend/configs/example.json
 
 # Logs
 logs

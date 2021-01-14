@@ -1,5 +1,4 @@
 import convict from "convict";
-import path from "path";
 
 export interface Config {
   bcrypt_cost: number;
@@ -48,7 +47,7 @@ const config = convict<Config>({
   },
 });
 
-config.loadFile(path.join(__dirname, `./configs/${config.get("env")}.json`));
+config.loadFile(`./configs/${config.get("env")}.json`);
 
 config.validate({ allowed: "strict" });
 
