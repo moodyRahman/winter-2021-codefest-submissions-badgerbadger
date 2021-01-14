@@ -4,7 +4,7 @@ import { ValidationError } from "joi";
 
 export type HandlerFunction = (...args: Parameters<RequestHandler>) => any;
 
-export default (handler: HandlerFunction) => async (
+export const handler = (handlerFn: HandlerFunction) => async (
   ...args: Parameters<RequestHandler>
 ) => {
   const [req, res, next] = args;
@@ -17,7 +17,7 @@ export default (handler: HandlerFunction) => async (
   };
 
   try {
-    const body = await handler(req, res, proxyNext);
+    const body = await handlerFn(req, res, proxyNext);
 
     if (!nextCalled && !res.headersSent) {
       res.send(body);

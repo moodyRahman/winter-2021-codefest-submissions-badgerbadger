@@ -1,3 +1,7 @@
+# Configs
+apps/backend/src/configs/*.json
+!apps/backend/src/configs/example.json
+
 # Logs
 logs
 *.log

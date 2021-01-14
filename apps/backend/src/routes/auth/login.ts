@@ -8,7 +8,7 @@ import config from "../../config";
 
 import { UserDocument, UserModel } from "../../schemas/user.schema";
 
-import handler from "../../utils/handler";
+import { handler } from "../../utils/handler";
 
 import { validate } from "../../validators/login.validator";
 

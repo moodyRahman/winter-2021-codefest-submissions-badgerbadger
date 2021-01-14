@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 import { UserModel } from "../../schemas/user.schema";
 
-import handler from "../../utils/handler";
+import { handler } from "../../utils/handler";
 
 import { validate } from "../../validators/register.validator";
 
