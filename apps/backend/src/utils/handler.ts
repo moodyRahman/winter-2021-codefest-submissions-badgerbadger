@@ -1,5 +1,6 @@
 import { HttpError } from "http-errors";
 import { NextFunction, RequestHandler } from "express";
+import { ValidationError } from "joi";
 
 export type HandlerFunction = (...args: Parameters<RequestHandler>) => any;
 
@@ -18,9 +19,7 @@ export default (handler: HandlerFunction) => async (
   try {
     const body = await handler(req, res, proxyNext);
 
-    if (!body) {
-      next();
-    } else if (!nextCalled && !res.headersSent) {
+    if (!nextCalled && !res.headersSent) {
       res.send(body);
     }
   } catch (error: unknown) {
@@ -39,6 +38,12 @@ export default (handler: HandlerFunction) => async (
 
         next(error);
       }
+    } else if (error instanceof ValidationError) {
+      res.send({
+        error: error.name,
+        details: error.details,
+        status: 400,
+      });
     } else {
       next(error);
     }

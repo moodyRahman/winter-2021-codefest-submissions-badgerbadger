@@ -13,6 +13,9 @@
     "convict": "^6.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "http-status-codes": "^2.1.4",
+    "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "mongoose": "^5.11.9"
@@ -22,6 +25,7 @@
     "@types/convict": "^5.2.2",
     "@types/cors": "^2.8.9",
     "@types/express": "^4.17.9",
+    "@types/http-errors": "^1.8.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mongoose": "^5.10.3",
     "@types/node": "^14.14.19",

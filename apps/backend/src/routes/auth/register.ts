@@ -7,23 +7,14 @@ import { UserModel } from "../../schemas/user.schema";
 
 import handler from "../../utils/handler";
 
+import { validate } from "../../validators/register.validator";
+
 const route = Router();
 
 route.post(
   "/register",
-  handler((req) => {
-    const { password, username } = req.body;
-
-    if (!password) {
-      throw new createError.BadRequest("You must input your password!");
-    }
-
-    if (!username) {
-      throw new createError.BadRequest("You must input your username!");
-    }
-  }),
   handler(async (req) => {
-    const { password, username } = req.body;
+    const { password, username } = await validate(req.body);
 
     if (await UserModel.exists({ username })) {
       throw new createError.Conflict("Username already exists!");

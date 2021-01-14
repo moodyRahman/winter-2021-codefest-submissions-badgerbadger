@@ -10,23 +10,14 @@ import { UserDocument, UserModel } from "../../schemas/user.schema";
 
 import handler from "../../utils/handler";
 
+import { validate } from "../../validators/login.validator";
+
 const route = Router();
 
 route.post(
   "/login",
-  handler((req) => {
-    const { password, username } = req.body;
-
-    if (!password) {
-      throw new createError.BadRequest("You must input your password!");
-    }
-
-    if (!username) {
-      throw new createError.BadRequest("You must input your password!");
-    }
-  }),
   handler(async (req) => {
-    const { password, username } = req.body;
+    const { password, username } = await validate(req.body);
 
     const user: UserDocument = await UserModel.findOne({ username });
 
