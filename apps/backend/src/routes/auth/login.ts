@@ -6,7 +6,7 @@ import { StatusCodes } from "http-status-codes";
 
 import config from "../../config";
 
-import { UserDocument, UserModel } from "../../schemas/user.schema";
+import { UserDocument, UserModel } from "../../models/user.model";
 
 import { handler } from "../../utils/handler";
 

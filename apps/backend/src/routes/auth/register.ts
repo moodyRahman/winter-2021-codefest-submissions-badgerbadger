@@ -3,7 +3,7 @@ import createError from "http-errors";
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
-import { UserModel } from "../../schemas/user.schema";
+import { UserModel } from "../../models/user.schema";
 
 import { handler } from "../../utils/handler";
 
