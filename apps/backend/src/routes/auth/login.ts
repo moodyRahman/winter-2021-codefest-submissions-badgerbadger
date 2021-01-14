@@ -4,17 +4,13 @@ import jwt from "jsonwebtoken";
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
+import config from "../../config";
+
 import { UserDocument, UserModel } from "../../schemas/user.schema";
 
 import handler from "../../utils/handler";
 
 const route = Router();
-
-const { JWT_SECRET } = process.env;
-
-if (!JWT_SECRET) {
-  throw new Error("Missing JWT_SECRET in environment");
-}
 
 route.post(
   "/login",
@@ -40,7 +36,7 @@ route.post(
 
     return {
       status: StatusCodes.OK,
-      token: jwt.sign({ username: user.username }, JWT_SECRET, {
+      token: jwt.sign({ username: user.username }, config.get("jwt_secret"), {
         algorithm: "HS512",
         expiresIn: "1h",
       }),

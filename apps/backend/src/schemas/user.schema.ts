@@ -2,6 +2,8 @@ import bcrypt from "bcrypt";
 
 import { Document, Schema, model } from "mongoose";
 
+import config from "../config";
+
 export interface User {
   password: string;
   username: string;
@@ -26,10 +28,7 @@ UserSchema.pre<UserDocument>("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   try {
-    this.password = await bcrypt.hash(
-      this.password,
-      Number(process.env.BCRYPT_COST) || 12
-    );
+    this.password = await bcrypt.hash(this.password, config.get("bcrypt_cost"));
 
     next();
   } catch (error) {
