@@ -4,7 +4,7 @@ import { FilterData } from "@shared/interfaces/filter-data";
 
 export default function Filters()
 {
-  const [filters, setFilters] = useState<filterData[]>([]);
+  const [filters, setFilters] = useState<FilterData[]>([]);
   const [highlight, setHighlight] = useState<string[]>([]);
   useEffect(() => {
     fetch("http://localhost:8080/filters")
@@ -26,8 +26,8 @@ export default function Filters()
         <div key={i}>
           <p className="header">{item.category}</p>
           {/* TODO: if necessary, make the filters into their own components */}
-          {item.requirements.map((item) => (
-            <p onClick={() => {
+          {item.requirements.map((item, i) => (
+            <p key={i} onClick={() => {
               if (highlight.includes(item)){
                 setHighlight(highlight => highlight.filter(elem => elem !== item));
               }
@@ -36,7 +36,7 @@ export default function Filters()
               }
             }} className={highlight.includes(item) ? "selected" : "deselected"}>{item}</p>
             ))}
-            {console.log(highlight)}
+            {/* {console.log(highlight)} */}
         </div>
       ))}
     </div>
