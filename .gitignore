@@ -1,3 +1,9 @@
+apps/backend/build
+
+# Configs
+apps/backend/configs/*.json
+!apps/backend/configs/example.json
+
 # Logs
 logs
 *.log

@@ -1,0 +1,6 @@
+{
+  "bcrypt_cost": 12,
+  "jwt_secret": "secret",
+  "mongo_uri": "mongodb://localhost:27017",
+  "port": 8080
+}
