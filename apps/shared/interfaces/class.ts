@@ -1,4 +1,8 @@
 export interface Class {
-  fulfilling_classes: string[];
-  requirement: string;
+  createdAt: Date;
+  fulfills: string[];
+  id: string;
+  name: string;
+  prereqs: Class[];
+  updatedAt: Date;
 }
