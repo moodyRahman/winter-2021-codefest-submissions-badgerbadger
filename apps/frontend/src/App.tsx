@@ -10,26 +10,29 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { useState } from "react";
+import { TokenContext } from "./context/TokenContext";
+
+
+type TokenType = {
+  token: string
+  setToken: (token: string) => void
+}
+
 
 function App() {
-  // const [rawdata, setRawData] = useState<Partial<Class>>({});
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/rawdata")
-  //     .then(res => res.json())
-  //     .then((result) => {
-  //       setRawData(result);
-  //     })
-  // }, [])
+  const [token, setToken] = useState<string>("");
 
 
   return (
+    <TokenContext.Provider value={{token, setToken}}>
+
     <Router>
 
       <Navbar />
 
       <Switch>
-        <Route path="/about">
+        <Route path="/login">
           <Login />
         </Route>
         <Route path="/register">
@@ -41,8 +44,9 @@ function App() {
         </Route>
 
       </Switch>
-      
+
     </Router>
+    </TokenContext.Provider>
 
   );
 }
