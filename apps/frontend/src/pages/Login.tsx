@@ -1,11 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import {TokenContext} from "../context/TokenContext"
+import { useHistory } from "react-router-dom";
 
 
 
 export default function Login() {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
-	const [token, setToken] = useState<string>("");
+	const {token, setToken} = useContext(TokenContext);
+	let history = useHistory();
+	
 
 	const login = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
@@ -44,8 +48,14 @@ export default function Login() {
 
 			{token ? username + " IS LOGGED IN" : username + " LOGGED OUT"} 
 			<br/>
+
 		
 			<input type="submit" value="Submit" />
+
+			<button onClick={(e) => {setToken("REEEE"); history.push("/")}}>
+				TOKEN TEST
+			</button>
+
 		</form>
 
 	)
