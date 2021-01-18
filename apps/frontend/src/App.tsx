@@ -1,9 +1,15 @@
+
 import Navbar from "./components/Navbar";
 import Filters from "./components/Filters";
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import './App.css';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   // const [rawdata, setRawData] = useState<Partial<Class>>({});
@@ -18,17 +24,26 @@ function App() {
 
 
   return (
-    <div className="App">
-      <pre style={{ textAlign: "left" }}>
-        {/* {JSON.stringify(rawdata, null, 2)} */}
-      </pre>
+    <Router>
+
       <Navbar />
-      <div style={{display:"flex", flexDirection:"row", margin:100}}>
-      <Login />
-      <Register />
-      </div>
-      <Filters />
-    </div>
+
+      <Switch>
+        <Route path="/about">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+
+        <Route path="/">
+          <Filters />
+        </Route>
+
+      </Switch>
+      
+    </Router>
+
   );
 }
 
