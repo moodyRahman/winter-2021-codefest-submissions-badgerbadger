@@ -14,7 +14,7 @@ export default function Navbar() {
         <p>Current</p>
         <p>Complete</p>
         <p>Log Out</p>
-        <p>{token}</p>
+        <p>{token.substring(0, 7)}</p> {/* dont flood the display with the token, but let me know it's there */}
       </div>
     </div>
   )
