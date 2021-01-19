@@ -1,10 +1,14 @@
-import { Document, Schema, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 
 import { Class } from "@shared/interfaces/class";
 
 import { omit } from "../utils/omit";
 
-export type ClassDocument = Class & Document;
+export interface ClassDocument extends Document {
+  fulfills: string[];
+  name: string;
+  prereqs: Types.ObjectId[];
+}
 
 const ClassSchema = new Schema(
   {

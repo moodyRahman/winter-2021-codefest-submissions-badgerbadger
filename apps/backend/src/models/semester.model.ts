@@ -1,13 +1,22 @@
-import { Document, Schema, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 
 import { Semester } from "@shared/interfaces/semester";
 
-import { ClassModel } from "./class.model";
-import { UserModel } from "./user.model";
+import { ClassDocument, ClassModel } from "./class.model";
+import { UserDocument, UserModel } from "./user.model";
 
 import { omit } from "../utils/omit";
 
-export type SemesterDocument = Semester & Document;
+export interface SemesterDocument extends Document {
+  classes: Types.Array<Types.ObjectId>;
+  name: string;
+  user: Types.ObjectId;
+}
+
+export interface PopulatedSemesterDocument {
+  classes: ClassDocument[];
+  user: UserDocument;
+}
 
 const SemesterSchema = new Schema(
   {
@@ -15,8 +24,10 @@ const SemesterSchema = new Schema(
       default: () => [],
       ref: ClassModel,
       type: [Schema.Types.ObjectId],
+      validate: (value: Types.ObjectId[]) => value.length < 30,
     },
     name: {
+      maxlength: 64,
       required: true,
       type: String,
     },

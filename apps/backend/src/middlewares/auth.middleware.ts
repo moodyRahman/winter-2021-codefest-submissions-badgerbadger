@@ -34,7 +34,7 @@ export default handler(
         config.get("jwt_secret")
       )) as JWTPayload;
 
-      const user = await UserModel.findOne({ id: payload.user });
+      const user = await UserModel.findOne({ _id: payload.user });
 
       if (!user) {
         throw INVALID_JWT_ERROR;

@@ -18,7 +18,7 @@ route.post(
   handler(async (req) => {
     const { password, username } = await validate(req.body);
 
-    const user: UserDocument = await UserModel.findOne({ username });
+    const user: UserDocument | null = await UserModel.findOne({ username });
 
     if (!user || !(await user.comparePassword(password))) {
       throw new createError.Unauthorized("Invalid login credentials");
