@@ -3,8 +3,13 @@ import Joi from "joi";
 import { CreateSemesterDto } from "@shared/dtos/create-semester.dto";
 
 export const validate = (payload: any): Partial<CreateSemesterDto> => {
+  // prettier-ignore
   const schema = Joi.object<Partial<CreateSemesterDto>>({
-    classes: Joi.array().items(Joi.string()).max(30),
+    classes: Joi
+      .array()
+      .items(Joi.string())
+      .max(30),
+
     name: Joi.string(),
   });
 
