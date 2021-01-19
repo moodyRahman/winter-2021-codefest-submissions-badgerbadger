@@ -8,7 +8,7 @@ export default function Login() {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const {token, setToken} = useContext(TokenContext);
-	let history = useHistory();
+		let history = useHistory();
 	
 
 	const login = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -54,6 +54,10 @@ export default function Login() {
 
 			<button onClick={(e) => {setToken("REEEE"); history.push("/")}}>
 				TOKEN TEST
+			</button>
+
+			<button onClick={()=>history.push("/register")}>
+				REGISTER
 			</button>
 
 		</form>
