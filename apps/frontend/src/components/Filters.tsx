@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./Filters.scss";
 import { FilterData } from "@shared/interfaces/filter-data";
+import { TokenContext } from "../context/TokenContext"
 
 export default function Filters()
 {
   const [filters, setFilters] = useState<FilterData[]>([]);
   const [highlight, setHighlight] = useState<string[]>([]);
+  const { loggedinUser, setLoggedin, token, setToken } = useContext(TokenContext);
+  
   useEffect(() => {
     fetch("http://localhost:8080/filters")
       .then(res => res.json())
@@ -18,7 +21,10 @@ export default function Filters()
 
   return (
     <div className="filters">
+      <h1>logged in as: {loggedinUser}</h1> 
     <pre style={{ textAlign: "left" }}>
+
+
       {JSON.stringify(filters, null, 2)}
     </pre>
     <div className="filter-row">
