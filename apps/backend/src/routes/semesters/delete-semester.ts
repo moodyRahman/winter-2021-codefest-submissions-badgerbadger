@@ -21,7 +21,7 @@ route.delete(
     const deleted: SemesterDocument | null = await SemesterModel.findOneAndDelete(
       {
         _id: id,
-        user: req.user!.id,
+        user: req.user!.id
       }
     );
 
@@ -30,7 +30,7 @@ route.delete(
     }
 
     return {
-      deleted,
+      deleted
     };
   })
 );

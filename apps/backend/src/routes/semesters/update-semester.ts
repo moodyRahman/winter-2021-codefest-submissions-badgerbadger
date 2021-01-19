@@ -25,7 +25,7 @@ route.patch(
 
     const semester: SemesterDocument | null = await SemesterModel.findOne({
       _id: id,
-      user: req.user!.id,
+      user: req.user!.id
     });
 
     if (!semester) {
@@ -61,7 +61,7 @@ route.patch(
       .then((s) => s.populate("classes").populate("user"));
 
     return {
-      updated,
+      updated
     };
   })
 );

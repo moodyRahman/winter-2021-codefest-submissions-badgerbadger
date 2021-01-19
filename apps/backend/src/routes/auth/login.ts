@@ -27,8 +27,8 @@ route.post(
     return {
       accessToken: jwt.sign({ user: user.id }, config.get("jwt_secret"), {
         algorithm: "HS512",
-        expiresIn: "1h",
-      }),
+        expiresIn: "1h"
+      })
     };
   })
 );

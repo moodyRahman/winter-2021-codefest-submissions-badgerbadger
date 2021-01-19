@@ -14,28 +14,28 @@ const ClassSchema = new Schema(
   {
     fulfills: {
       required: true,
-      type: [String],
+      type: [String]
     },
     name: {
       required: true,
-      type: String,
+      type: String
     },
     prereqs: {
       default: () => [],
       ref: "Class",
-      type: [Schema.Types.ObjectId],
-    },
+      type: [Schema.Types.ObjectId]
+    }
   },
   {
     timestamps: true,
     toJSON: {
       transform: (_doc, ret) => omit<ClassDocument>(ret, ["_id", "__v"]),
-      virtuals: true,
+      virtuals: true
     },
     toObject: {
       transform: (_doc, ret) => omit<ClassDocument>(ret, ["_id", "__v"]),
-      virtuals: true,
-    },
+      virtuals: true
+    }
   }
 );
 

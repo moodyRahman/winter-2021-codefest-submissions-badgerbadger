@@ -36,7 +36,7 @@ mongoose.connection.on("error", console.error);
     useCreateIndex: true,
     useFindAndModify: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   });
 
   console.log(

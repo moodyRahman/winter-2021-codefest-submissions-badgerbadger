@@ -17,7 +17,7 @@ route.get(
       .populate("user");
 
     return {
-      semesters,
+      semesters
     };
   })
 );

@@ -41,7 +41,7 @@ route.post(
     await semester.save();
 
     return {
-      semester,
+      semester
     };
   })
 );

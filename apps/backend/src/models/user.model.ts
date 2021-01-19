@@ -23,11 +23,11 @@ const UserSchema = new Schema(
       maxlength: 32,
       type: String,
       unique: true,
-      validate: /^[a-z0-9]+$/i,
+      validate: /^[a-z0-9]+$/i
     },
     password: {
       required: true,
-      type: String,
+      type: String
     },
     username: {
       minlength: 4,
@@ -35,19 +35,19 @@ const UserSchema = new Schema(
       required: true,
       type: String,
       unique: true,
-      validate: /^[a-z0-9]+$/i,
-    },
+      validate: /^[a-z0-9]+$/i
+    }
   },
   {
     timestamps: true,
     toJSON: {
       transform: (_doc, ret) => omit<UserDocument>(ret, ["_id", "__v"]),
-      virtuals: true,
+      virtuals: true
     },
     toObject: {
       transform: (_doc, ret) => omit<UserDocument>(ret, ["_id", "__v"]),
-      virtuals: true,
-    },
+      virtuals: true
+    }
   }
 );
 

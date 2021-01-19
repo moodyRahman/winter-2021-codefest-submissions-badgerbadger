@@ -17,7 +17,7 @@ route.post(
     const { password, username } = validate(req.body);
 
     const exist = await UserModel.exists({
-      username: username.toLowerCase(),
+      username: username.toLowerCase()
     });
 
     if (exist) {
@@ -27,7 +27,7 @@ route.post(
     const user = await new UserModel({ password, username }).save();
 
     return {
-      user: omit(user.toObject(), ["password"]),
+      user: omit(user.toObject(), ["password"])
     };
   })
 );

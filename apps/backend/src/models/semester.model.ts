@@ -24,29 +24,29 @@ const SemesterSchema = new Schema(
       default: () => [],
       ref: ClassModel,
       type: [Schema.Types.ObjectId],
-      validate: (value: Types.ObjectId[]) => value.length < 30,
+      validate: (value: Types.ObjectId[]) => value.length < 30
     },
     name: {
       maxlength: 64,
       required: true,
-      type: String,
+      type: String
     },
     user: {
       ref: UserModel,
       required: true,
-      type: Schema.Types.ObjectId,
-    },
+      type: Schema.Types.ObjectId
+    }
   },
   {
     timestamps: true,
     toJSON: {
       transform: (_doc, ret) => omit<SemesterDocument>(ret, ["_id", "__v"]),
-      virtuals: true,
+      virtuals: true
     },
     toObject: {
       transform: (_doc, ret) => omit<SemesterDocument>(ret, ["_id", "__v"]),
-      virtuals: true,
-    },
+      virtuals: true
+    }
   }
 );
 
