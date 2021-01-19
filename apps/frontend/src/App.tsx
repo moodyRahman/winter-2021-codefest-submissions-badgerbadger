@@ -25,11 +25,13 @@ function App() {
       <Navbar />
       {token === "" &&        // if user is not logged in, use the following routes 
           <Switch>
-            <Route path="/filter">
-              <Filters />
-            </Route>
+            
             <Route path="/register">
               <Register />
+            </Route>
+
+            <Route path="/login">
+              <Login />
             </Route>
 
             <Route path="/">
@@ -42,9 +44,14 @@ function App() {
         {token !== "" &&        // if the user is logged in, use these routes
           <Switch>
 
-            <Route path="/">
-              THE USER IS LOGGED IN AND USING THE LOGGED IN SWITCHES
+            <Route path="/filter">
+              <Filters />
             </Route>
+
+          <Route path="/">
+            THE USER IS LOGGED IN AND USING THE LOGGED IN SWITCHES
+            this route hasn't been written yet o_O
+          </Route>
 
           </Switch>
         }
