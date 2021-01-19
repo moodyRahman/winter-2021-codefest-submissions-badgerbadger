@@ -6,7 +6,7 @@ export type HandlerFunction<T> = (...args: Parameters<RequestHandler>) => T;
 
 export const handler = <T>(handlerFn: HandlerFunction<T>) => async (
   ...args: Parameters<RequestHandler>
-) => {
+): Promise<void> => {
   const [req, res, next] = args;
 
   let nextCalled = false;

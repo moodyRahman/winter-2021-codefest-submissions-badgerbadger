@@ -12,7 +12,7 @@ route.get(
     // TODO: Ideally it should return a paginated set of semesters since there is no limit on how much semesters a user can create
     // prettier-ignore
     const semesters: SemesterDocument[] = await SemesterModel
-      .find({ user: req.user!.id, })
+      .find({ user: req.user.id, })
       .populate("classes")
       .populate("user");
 

@@ -23,7 +23,7 @@ route.post(
       }
     }
 
-    if (await SemesterModel.exists({ name, user: req.user!.id })) {
+    if (await SemesterModel.exists({ name, user: req.user.id })) {
       throw new createError.Conflict(`Semester '${name}' already exist!`);
     }
 
@@ -36,7 +36,7 @@ route.post(
 
     semester.classes.addToSet(classes.map((c) => c._id));
     semester.name = name;
-    semester.user = req.user!.id;
+    semester.user = req.user.id;
 
     await semester.save();
 
