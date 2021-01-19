@@ -27,7 +27,9 @@ export default function Login() {
 		.then(res => res.json())
 		.then(response => {
 			if (response.status === 200) {
-				setToken(response.token);
+				setToken(response.data.accessToken);
+				history.push("/filter")
+				console.log(response);
 				return console.log("LOGGED IN")
 			}
 			setToken("");
