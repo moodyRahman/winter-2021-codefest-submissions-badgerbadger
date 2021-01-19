@@ -15,10 +15,11 @@ import { TokenContext } from "./context/TokenContext";
 
 function App() {
   const [token, setToken] = useState<string>("");
+  const [loggedinUser, setLoggedin] = useState<string>("");
 
 
   return (
-    <TokenContext.Provider value={{token, setToken}}>
+    <TokenContext.Provider value={{ loggedinUser, setLoggedin, token, setToken}}>
 
     <Router>
 

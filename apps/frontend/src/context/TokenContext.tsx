@@ -1,4 +1,9 @@
 
 import { createContext } from 'react'
 
-export const TokenContext = createContext({token:"", setToken:(token: string): void => {}});
+export const TokenContext = createContext({
+	loggedinUser:"", 
+	setLoggedin:(username:string):void => {}, 
+	token:"", 
+	setToken:(token: string): void => {}
+});
