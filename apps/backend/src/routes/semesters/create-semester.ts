@@ -27,10 +27,7 @@ route.post(
       throw new createError.Conflict(`Semester '${name}' already exist!`);
     }
 
-    // prettier-ignore
-    const classes: ClassDocument[] = await ClassModel
-      .find({ _id: { $in: classIds }, })
-      .populate("prereqs");
+    const classes = await ClassModel.find({ _id: { $in: classIds } });
 
     const semester = new SemesterModel();
 

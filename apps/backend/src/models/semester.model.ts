@@ -1,21 +1,15 @@
-import { Document, Model, Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 
-import { Semester } from "@shared/interfaces/semester";
-
-import { ClassDocument, ClassModel } from "./class.model";
-import { UserDocument, UserModel } from "./user.model";
+import { ClassModel } from "./class.model";
+import { UserModel } from "./user.model";
 
 import { omit } from "../utils/omit";
 
+// TODO: dtos should use SemesterDocument interface for single source of truth
 export interface SemesterDocument extends Document {
   classes: Types.Array<Types.ObjectId>;
   name: string;
   user: Types.ObjectId;
-}
-
-export interface PopulatedSemesterDocument {
-  classes: ClassDocument[];
-  user: UserDocument;
 }
 
 const SemesterSchema = new Schema(
@@ -50,7 +44,7 @@ const SemesterSchema = new Schema(
   }
 );
 
-export const SemesterModel = model<SemesterDocument, Model<SemesterDocument>>(
+export const SemesterModel = model<SemesterDocument>(
   "Semester",
   SemesterSchema
 );

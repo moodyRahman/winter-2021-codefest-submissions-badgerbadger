@@ -1,22 +1,21 @@
 import bcrypt from "bcrypt";
 
-import { Document, Model, Schema, model } from "mongoose";
-
-import { User } from "@shared/interfaces/user";
+import { Document, Schema, model } from "mongoose";
 
 import config from "../config";
 
 import { omit } from "../utils/omit";
 
-type UserDocumentType = User & Document;
-
-export interface UserDocument extends UserDocumentType {
+// TODO: dtos should use UserDocument interface for single source of truth
+export interface UserDocument extends Document {
+  displayName: string;
   password: string;
+  username: string;
 
   comparePassword(plainText: string): Promise<boolean>;
 }
 
-const UserSchema = new Schema(
+const UserSchema = new Schema<UserDocument>(
   {
     displayName: {
       minlength: 4,
@@ -79,7 +78,4 @@ UserSchema.methods.comparePassword = function (
   return bcrypt.compare(plainText, this.password);
 };
 
-export const UserModel = model<UserDocument, Model<UserDocument>>(
-  "User",
-  UserSchema
-);
+export const UserModel = model<UserDocument>("User", UserSchema);

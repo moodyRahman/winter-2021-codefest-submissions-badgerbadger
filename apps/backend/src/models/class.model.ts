@@ -1,9 +1,8 @@
-import { Document, Model, Schema, Types, model } from "mongoose";
-
-import { Class } from "@shared/interfaces/class";
+import { Document, Schema, Types, model } from "mongoose";
 
 import { omit } from "../utils/omit";
 
+// TODO: dtos should use ClassDocument interface for single source of truth
 export interface ClassDocument extends Document {
   fulfills: string[];
   name: string;
@@ -39,7 +38,4 @@ const ClassSchema = new Schema(
   }
 );
 
-export const ClassModel = model<ClassDocument, Model<ClassDocument>>(
-  "Class",
-  ClassSchema
-);
+export const ClassModel = model<ClassDocument>("Class", ClassSchema);

@@ -19,7 +19,7 @@
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
-    "mongoose": "^5.11.9"
+    "mongoose": "^5.11.12"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

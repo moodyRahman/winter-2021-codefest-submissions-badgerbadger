@@ -23,7 +23,7 @@ route.patch(
 
     const { classes, name } = validate(req.body);
 
-    const semester: SemesterDocument | null = await SemesterModel.findOne({
+    const semester = await SemesterModel.findOne({
       _id: id,
       user: req.user.id
     });
@@ -41,8 +41,6 @@ route.patch(
         }
       }
 
-      // Check if an array of object ids exist in the collection in 1 single query
-      // Only tradeoff is that you don't know which ids were invalid
       const count = await ClassModel.count({ _id: { $in: classes } });
 
       if (count !== classes.length) {
@@ -56,12 +54,10 @@ route.patch(
       semester.name = name;
     }
 
-    const updated = await semester
-      .save()
-      .then((s) => s.populate("classes").populate("user"));
+    await semester.save();
 
     return {
-      updated
+      updated: semester
     };
   })
 );

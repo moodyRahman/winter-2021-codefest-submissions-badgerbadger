@@ -5,7 +5,7 @@ import { Router } from "express";
 
 import config from "../../config";
 
-import { UserDocument, UserModel } from "../../models/user.model";
+import { UserModel } from "../../models/user.model";
 
 import { handler } from "../../utils/handler";
 
@@ -18,7 +18,7 @@ route.post(
   handler(async (req) => {
     const { password, username } = validate(req.body);
 
-    const user: UserDocument | null = await UserModel.findOne({ username });
+    const user = await UserModel.findOne({ username });
 
     if (!user || !(await user.comparePassword(password))) {
       throw new createError.Unauthorized("Invalid login credentials");
