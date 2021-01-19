@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { useHistory } from "react-router-dom";
 
 
 export default function Login() {
@@ -7,6 +7,7 @@ export default function Login() {
 	const [password0, setPassword0] = useState<string>("");
 	const [password1, setPassword1] = useState<string>("");
 	const [message, setMessage] = useState<string>("");
+	let history = useHistory();
 
 	const register = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
@@ -34,12 +35,15 @@ export default function Login() {
 		})
 			.then(res => res.json())
 			.then(response => {
+				console.log(response);
 				if (response.status !== 200) {
+					console.log(response)
 					return setMessage("SERVER ERROR");
+				} else {
+					history.push("/");
+					setMessage("User created!")
 				}
-				return setMessage("User created!")
 			})
-		return setMessage("New user created!")
 
 
 	}
