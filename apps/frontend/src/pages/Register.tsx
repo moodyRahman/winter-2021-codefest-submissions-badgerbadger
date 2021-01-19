@@ -37,11 +37,11 @@ export default function Login() {
 			.then(response => {
 				console.log(response);
 				if (response.status !== 200) {
-					console.log(response)
+					console.log(response)	
 					return setMessage("SERVER ERROR");
 				} else {
 					history.push("/");
-					setMessage("User created!")
+					return setMessage("User created!")
 				}
 			})
 
