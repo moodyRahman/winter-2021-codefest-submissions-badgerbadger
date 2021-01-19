@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -b",
-    "lint": "eslint --fix",
+    "lint": "prettier --write ./src",
     "start": "tsnd --project ./tsconfig.json --respawn ./src/index.ts"
   },
   "dependencies": {
