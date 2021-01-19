@@ -21,7 +21,7 @@ route.patch(
       throw new createError.BadRequest("Invalid semester ID!");
     }
 
-    const { classes, name } = await validate(req.body);
+    const { classes, name } = validate(req.body);
 
     const semester: SemesterDocument | null = await SemesterModel.findOne({
       _id: id,

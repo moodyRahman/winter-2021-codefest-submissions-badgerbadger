@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-import { Document, Schema, model } from "mongoose";
+import { Document, Model, Schema, model } from "mongoose";
 
 import { User } from "@shared/interfaces/user";
 
@@ -79,4 +79,7 @@ UserSchema.methods.comparePassword = function (
   return bcrypt.compare(plainText, this.password);
 };
 
-export const UserModel = model<UserDocument>("User", UserSchema);
+export const UserModel = model<UserDocument, Model<UserDocument>>(
+  "User",
+  UserSchema
+);

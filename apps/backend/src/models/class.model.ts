@@ -1,4 +1,4 @@
-import { Document, Schema, Types, model } from "mongoose";
+import { Document, Model, Schema, Types, model } from "mongoose";
 
 import { Class } from "@shared/interfaces/class";
 
@@ -39,4 +39,7 @@ const ClassSchema = new Schema(
   }
 );
 
-export const ClassModel = model<ClassDocument>("Class", ClassSchema);
+export const ClassModel = model<ClassDocument, Model<ClassDocument>>(
+  "Class",
+  ClassSchema
+);

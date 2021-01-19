@@ -1,4 +1,4 @@
-import { Document, Schema, Types, model } from "mongoose";
+import { Document, Model, Schema, Types, model } from "mongoose";
 
 import { Semester } from "@shared/interfaces/semester";
 
@@ -50,7 +50,7 @@ const SemesterSchema = new Schema(
   }
 );
 
-export const SemesterModel = model<SemesterDocument>(
+export const SemesterModel = model<SemesterDocument, Model<SemesterDocument>>(
   "Semester",
   SemesterSchema
 );

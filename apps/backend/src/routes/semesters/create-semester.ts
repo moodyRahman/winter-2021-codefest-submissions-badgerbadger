@@ -15,16 +15,16 @@ const route = Router();
 route.post(
   "/",
   handler(async (req) => {
-    const { classes: classIds, name } = await validate(req.body);
-
-    if (await SemesterModel.exists({ name, user: req.user!.id })) {
-      throw new createError.Conflict(`Semester '${name}' already exist!`);
-    }
+    const { classes: classIds, name } = validate(req.body);
 
     for (const classId of classIds) {
       if (!Types.ObjectId.isValid(classId)) {
         throw new createError.BadRequest("Invalid class ID!");
       }
+    }
+
+    if (await SemesterModel.exists({ name, user: req.user!.id })) {
+      throw new createError.Conflict(`Semester '${name}' already exist!`);
     }
 
     // prettier-ignore

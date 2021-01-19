@@ -16,7 +16,7 @@ const route = Router();
 route.post(
   "/login",
   handler(async (req) => {
-    const { password, username } = await validate(req.body);
+    const { password, username } = validate(req.body);
 
     const user: UserDocument | null = await UserModel.findOne({ username });
 
