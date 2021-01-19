@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 export default function Login() {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
-	const {token, setToken} = useContext(TokenContext);
+	const {loggedinUser, setLoggedin, token, setToken} = useContext(TokenContext);
 		let history = useHistory();
 	
 
@@ -28,6 +28,7 @@ export default function Login() {
 		.then(response => {
 			if (response.status === 200) {
 				setToken(response.data.accessToken);
+				setLoggedin(username);
 				history.push("/filter")
 				console.log(response);
 				return console.log("LOGGED IN")
