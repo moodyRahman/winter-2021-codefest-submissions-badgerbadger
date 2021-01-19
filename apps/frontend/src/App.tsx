@@ -8,16 +8,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import { useState } from "react";
 import { TokenContext } from "./context/TokenContext";
-
-
-type TokenType = {
-  token: string
-  setToken: (token: string) => void
-}
 
 
 function App() {
@@ -30,20 +23,34 @@ function App() {
     <Router>
 
       <Navbar />
+      {token === "" &&        // if user is not logged in, use the following routes 
+          <Switch>
+            <Route path="/filter">
+              <Filters />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
 
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
+            <Route path="/">
+              <Login />
+            </Route>
 
-        <Route path="/">
-          <Filters />
-        </Route>
+          </Switch>
+      }
 
-      </Switch>
+        {token !== "" &&        // if the user is logged in, use these routes
+          <Switch>
+
+            <Route path="/">
+              THE USER IS LOGGED IN AND USING THE LOGGED IN SWITCHES
+            </Route>
+
+          </Switch>
+        }
+
+
+
 
     </Router>
     </TokenContext.Provider>
