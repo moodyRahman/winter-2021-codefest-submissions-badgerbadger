@@ -12,8 +12,8 @@ route.get("/filters", (_req, res) => {
         "English Composition 1",
         "English Composition 2",
         "Mathematical and Quantitative Reasoning",
-        "Life and Physical Sciences",
-      ],
+        "Life and Physical Sciences"
+      ]
     },
     {
       category: "Flexible Common Core",
@@ -22,8 +22,8 @@ route.get("/filters", (_req, res) => {
         "US Experiences in Its Diversity",
         "Creative Expression",
         "Individual and Society",
-        "Scientific World",
-      ],
+        "Scientific World"
+      ]
     },
     {
       category: "Pluralism and Diversity",
@@ -31,9 +31,9 @@ route.get("/filters", (_req, res) => {
         "Group A: Non-European Societies",
         "Group B: Groups in the USA",
         "Group C: Women, Gender and Sexual Orientation",
-        "Group D: European Societies",
-      ],
-    },
+        "Group D: European Societies"
+      ]
+    }
   ];
 
   res.send(filters);

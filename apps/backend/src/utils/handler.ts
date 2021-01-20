@@ -6,7 +6,7 @@ export type HandlerFunction<T> = (...args: Parameters<RequestHandler>) => T;
 
 export const handler = <T>(handlerFn: HandlerFunction<T>) => async (
   ...args: Parameters<RequestHandler>
-) => {
+): Promise<void> => {
   const [req, res, next] = args;
 
   let nextCalled = false;
@@ -22,7 +22,7 @@ export const handler = <T>(handlerFn: HandlerFunction<T>) => async (
     if (!nextCalled && !res.headersSent) {
       res.send({
         status: res.statusCode,
-        data: body,
+        data: body
       });
     }
   } catch (error: unknown) {
@@ -31,12 +31,12 @@ export const handler = <T>(handlerFn: HandlerFunction<T>) => async (
         res.status(error.status).send({
           error: error.name,
           message: error.message,
-          status: error.status,
+          status: error.status
         });
       } else {
         res.status(error.status).send({
           error: error.name,
-          status: error.status,
+          status: error.status
         });
 
         next(error);
@@ -45,7 +45,7 @@ export const handler = <T>(handlerFn: HandlerFunction<T>) => async (
       res.send({
         error: error.name,
         details: error.details,
-        status: 400,
+        status: 400
       });
     } else {
       next(error);

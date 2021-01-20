@@ -29,12 +29,12 @@ export default handler(
     }
 
     try {
-      const payload = (await jwt.verify(
+      const payload = jwt.verify(
         credentials,
-        config.get("jwt_secret")
-      )) as JWTPayload;
+        config.get("jwt").accessToken.secret
+      ) as JWTPayload;
 
-      const user = await UserModel.findOne({ id: payload.user });
+      const user = await UserModel.findOne({ _id: payload.user });
 
       if (!user) {
         throw INVALID_JWT_ERROR;

@@ -1,0 +1,55 @@
+[
+  {
+    "fulfills": ["Scientific World"],
+    "name": "CSCI 12700",
+    "prereqs": []
+  },
+  {
+    "fulfills": ["Major"],
+    "name": "CSCI 13500",
+    "prereqs": [
+      {
+        "fulfills": ["Scientific World"],
+        "name": "CSCI 12700",
+        "prereqs": []
+      }
+    ]
+  },
+  {
+    "fulfills": ["Major"],
+    "name": "CSCI 15000",
+    "prereqs": []
+  },
+  {
+    "fulfills": ["Major"],
+    "name": "CSCI 16000",
+    "prereqs": [
+      {
+        "fulfills": ["Scientific World"],
+        "name": "CSCI 12700",
+        "prereqs": []
+      },
+      {
+        "fulfills": ["Major"],
+        "name": "CSCI 15000",
+        "prereqs": []
+      }
+    ]
+  },
+  {
+    "fulfills": ["Major"],
+    "name": "CSCI 23500",
+    "prereqs": [
+      {
+        "fulfills": ["Major"],
+        "name": "CSCI 13500",
+        "prereqs": []
+      },
+      {
+        "fulfills": ["Major"],
+        "name": "CSCI 15000",
+        "prereqs": []
+      }
+    ]
+  }
+]
