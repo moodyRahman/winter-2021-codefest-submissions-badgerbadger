@@ -16,10 +16,14 @@ route.delete(
   handler(async (req) => {
     const { id } = req.params;
 
-    const deleted = await SemesterModel.findOneAndDelete({
-      _id: id,
-      user: req.user.id
-    });
+    // prettier-ignore
+    const deleted = await SemesterModel
+      .findOneAndDelete({
+        _id: id,
+        user: req.user.id
+      })
+      .populate("classes")
+      .populate("user");
 
     if (!deleted) {
       throw new createError.BadRequest(`Semester '${id}' does not exist!`);

@@ -43,8 +43,13 @@ route.patch(
 
     await semester.save();
 
+    const updated = await semester
+      .populate("classes")
+      .populate("user")
+      .execPopulate();
+
     return {
-      updated: semester
+      updated
     };
   })
 );

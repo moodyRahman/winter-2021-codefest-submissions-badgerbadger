@@ -30,8 +30,13 @@ route.post(
 
     await semester.save();
 
+    const created = await semester
+      .populate("classes")
+      .populate("user")
+      .execPopulate();
+
     return {
-      semester
+      created
     };
   })
 );
