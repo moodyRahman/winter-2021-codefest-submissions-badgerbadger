@@ -22,8 +22,8 @@ route.delete(
         _id: id,
         user: req.user.id
       })
-      .populate("classes")
-      .populate("user");
+      .populate({ path: "classes", model: "Class" })
+      .populate({ path: "user", model: "User" })
 
     if (!deleted) {
       throw new createError.BadRequest(`Semester '${id}' does not exist!`);

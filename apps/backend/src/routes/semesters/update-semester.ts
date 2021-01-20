@@ -31,10 +31,17 @@ route.patch(
     }
 
     if (classIds) {
-      const classes = await ClassModel.find({ _id: { $in: classIds } });
-      const ids = classes.map((c: ClassDocument) => c._id);
+      if (classIds.length) {
+        const classes = await ClassModel.find({ _id: { $in: classIds } });
 
-      semester.classes = new Types.Array(...ids);
+        const ids = [
+          ...new Set<Types.ObjectId>(classes.map((c: ClassDocument) => c._id))
+        ];
+
+        semester.set("classes", ids);
+      } else {
+        semester.set("classes", []);
+      }
     }
 
     if (name && name !== semester.name) {
@@ -44,8 +51,8 @@ route.patch(
     await semester.save();
 
     const updated = await semester
-      .populate("classes")
-      .populate("user")
+      .populate({ path: "classes", model: "Class" })
+      .populate({ path: "user", model: "User" })
       .execPopulate();
 
     return {

@@ -15,7 +15,6 @@ export interface SemesterDocument extends Document {
 const SemesterSchema = new Schema(
   {
     classes: {
-      default: () => [],
       ref: ClassModel,
       type: [Schema.Types.ObjectId],
       validate: (value: Types.ObjectId[]) => value.length < 30

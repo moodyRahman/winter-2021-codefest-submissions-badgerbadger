@@ -20,19 +20,22 @@ route.post(
       throw new createError.Conflict(`Semester '${name}' already exist!`);
     }
 
-    const classes = await ClassModel.find({ _id: { $in: classIds } });
-
     const semester = new SemesterModel();
 
-    semester.classes.addToSet(...classes.map((c: ClassDocument) => c._id));
+    if (classIds.length) {
+      const classes = await ClassModel.find({ _id: { $in: classIds } });
+
+      semester.classes.addToSet(...classes.map((c: ClassDocument) => c._id));
+    }
+
     semester.name = name;
     semester.user = req.user.id;
 
     await semester.save();
 
     const created = await semester
-      .populate("classes")
-      .populate("user")
+      .populate({ path: "classes", model: "Class" })
+      .populate({ path: "user", model: "User" })
       .execPopulate();
 
     return {
