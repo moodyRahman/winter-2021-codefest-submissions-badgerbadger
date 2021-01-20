@@ -59,10 +59,6 @@ export default function Login() {
 				TOKEN TEST
 			</button>
 
-			<button onClick={()=>history.push("/register")}>
-				REGISTER
-			</button>
-
 		</form>
 
 	)

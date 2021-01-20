@@ -22,3 +22,19 @@ export default function Navbar() {
     </div>
   )
 }
+
+  return (
+    <div className="navbar">
+      <Link to="/"><p className="logo">insert logo here </p></Link>
+
+      
+      <div className="nav-buttons">
+        <Link to="/login"> <p>Login</p></Link>
+        <Link to="/register"> <p>Register</p></Link>
+        <p>{token ? token.substring(0, 7) : "no token in context"}</p> {/* dont flood the display with the token, but let me know it's there */}
+      </div>
+    </div>
+  )
+
+  
+}
