@@ -1,0 +1,44 @@
+@import "../main.scss";
+
+.register {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  background-color: $light;
+  color: #FFF;
+  width: 30vw;
+  margin: 100px auto;
+  padding: 50px;
+
+  .line {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1vh 2vw;
+
+    label {
+      width: 30%;
+      float: left;
+    }
+  
+    input {
+      background-color: $accent;
+      border: 1px solid $grey;
+      padding: 4px;
+      width: 60%;
+      float: right;
+    }
+  }
+
+  input[type=submit] {
+    margin: 0 40px;
+    padding: 8px 12px;
+    background-color: $accent;
+    border: solid 1px $accent;
+    border-radius: 20px;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25);
+  }
+}

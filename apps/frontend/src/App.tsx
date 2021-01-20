@@ -1,6 +1,6 @@
 
 import Navbar from "./components/Navbar";
-import Filters from "./components/Filters";
+import Search from "./pages/Search";
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import './App.css';
@@ -45,8 +45,8 @@ function App() {
         {token !== "" &&        // if the user is logged in, use these routes
           <Switch>
 
-            <Route path="/filter">
-              <Filters />
+            <Route path="/search">
+              <Search />
             </Route>
 
           <Route path="/">

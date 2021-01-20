@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import {TokenContext} from "../context/TokenContext"
 import { useHistory } from "react-router-dom";
-
+import "./Login.scss";
 
 
 export default function Login() {
@@ -40,7 +40,7 @@ export default function Login() {
 	}
 
 	return (
-		<form onSubmit={login}>
+		<form className="login" onSubmit={login}>
 			THIS IS THE LOGIN FORM <br></br>
 			<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
 			<br></br>

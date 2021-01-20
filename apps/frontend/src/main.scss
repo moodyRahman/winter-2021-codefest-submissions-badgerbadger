@@ -37,6 +37,14 @@ table {
 
 /* end of css reset */
 
-body {
-  font-family: "Proxima Soft", sans-serif;
+/* variables */
+$accent: #ffe053;
+$light: #4E2E91;
+$dark-grey: #C3C3C3;
+$grey: #E6E6E6;
+
+body, input {
+	font-family: "Proxima Soft", sans-serif;
+	font-size: 16px;
+	background-color: $grey;
 }

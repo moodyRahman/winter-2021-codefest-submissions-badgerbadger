@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom";
-
+import './Register.scss';
 
 export default function Login() {
 	const [username, setUsername] = useState<string>("");
@@ -49,7 +49,7 @@ export default function Login() {
 	}
 
 	return (
-		<form onSubmit={register}>
+		<form className="register" onSubmit={register}>
 			THIS IS THE REGISTER FORM <br></br>
 			<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
 			<br></br>
