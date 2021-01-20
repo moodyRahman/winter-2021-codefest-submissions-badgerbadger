@@ -10,6 +10,7 @@ import config from "./config";
 import authCheck from "./middlewares/auth.middleware";
 
 import auth from "./routes/auth";
+import classes from "./routes/classes";
 import debug from "./routes/debug";
 import filter from "./routes/filter";
 import rawData from "./routes/raw-data";
@@ -23,6 +24,7 @@ app.use(cors());
 app.get("/", (_req, res) => res.send("Express + TypeScript Server"));
 
 app.use("/auth", auth);
+app.use("/classes", authCheck, classes);
 app.use("/semesters", authCheck, semesters);
 
 app.use(debug);
