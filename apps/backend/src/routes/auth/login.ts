@@ -11,6 +11,8 @@ import { handler } from "../../utils/handler";
 
 import { validate } from "../../validators/login.validator";
 
+const { accessToken, refreshToken } = config.get("jwt");
+
 const route = Router();
 
 route.post(
@@ -23,8 +25,6 @@ route.post(
     if (!user || !(await user.comparePassword(password))) {
       throw new createError.Unauthorized("Invalid login credentials");
     }
-
-    const { accessToken, refreshToken } = config.get("jwt");
 
     return {
       accessToken: jwt.sign({ user: user.id }, accessToken.secret, {

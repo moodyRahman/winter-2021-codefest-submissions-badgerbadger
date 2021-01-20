@@ -5,16 +5,17 @@ import { Router } from "express";
 
 import config from "../../config";
 
+import { JWTPayload } from "../../interfaces/jwt-payload.interface";
+
 import { UserModel } from "../../models/user.model";
 
 import { handler } from "../../utils/handler";
 
 import { validate } from "../../validators/refresh-token.validator";
-import { JWTPayload } from "../../interfaces/jwt-payload.interface";
-
-const route = Router();
 
 const { accessToken, refreshToken } = config.get("jwt");
+
+const route = Router();
 
 const INVALID_REFRESH_TOKEN_ERROR = new createError.Unauthorized(
   "Invalid refresh token!"
