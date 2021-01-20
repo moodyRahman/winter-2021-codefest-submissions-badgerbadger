@@ -8,6 +8,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import { useState } from "react";
 import { TokenContext } from "./context/TokenContext";
@@ -36,7 +37,7 @@ function App() {
             </Route>
 
             <Route path="/">
-              <Login />
+              <Redirect to="/login" />
             </Route>
 
           </Switch>
