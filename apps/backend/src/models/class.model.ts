@@ -6,7 +6,7 @@ import { omit } from "../utils/omit";
 export interface ClassDocument extends Document {
   fulfills: string[];
   name: string;
-  prereqs: Types.ObjectId[];
+  prereqs: Types.Array<Types.ObjectId>;
 }
 
 const ClassSchema = new Schema(

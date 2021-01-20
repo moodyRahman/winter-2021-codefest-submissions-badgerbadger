@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc -b",
     "lint": "eslint --fix ./src",
-    "start": "tsnd --project ./tsconfig.json --respawn ./src/index.ts"
+    "start": "tsnd --project ./tsconfig.json --respawn ./src/index.ts",
+    "add:classes": "tsnd ./src/scripts/add-classes.ts"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
