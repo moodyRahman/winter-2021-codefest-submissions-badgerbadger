@@ -19,7 +19,8 @@ export default function Navbar() {
           <p>Complete</p>
           <Link to="/" onClick={()=>{setToken(""); setLoggedin("")}}> <p>Log Out</p></Link>
           
-          <p>{token.substring(0, 7)}</p> {/* dont flood the display with the token, but let me know it's there */}
+          {/* redundant ternary statement for a sanity check */}
+          <p>{token ? ("current token: " + token.substring(0, 7)) : "no token in context"}</p> {/* dont flood the display with the token, but let me know it's there */} 
         </div>
       </div>
     )
@@ -33,7 +34,8 @@ export default function Navbar() {
       <div className="nav-buttons">
         <Link to="/login"> <p>Login</p></Link>
         <Link to="/register"> <p>Register</p></Link>
-        <p>{token ? token.substring(0, 7) : "no token in context"}</p> {/* dont flood the display with the token, but let me know it's there */}
+        {/* redundant ternary statement for a sanity check */}
+        <p>{token ? ("current token: " + token.substring(0, 7)) : "no token in context"}</p> {/* dont flood the display with the token, but let me know it's there */}
       </div>
     </div>
   )
