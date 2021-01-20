@@ -40,11 +40,15 @@ const UserSchema = new Schema<UserDocument>(
   {
     timestamps: true,
     toJSON: {
-      transform: (_doc, ret) => omit<UserDocument>(ret, ["_id", "__v"]),
+      transform: (_doc, ret) => {
+        return omit<UserDocument>(ret, ["_id", "__v", "password"]);
+      },
       virtuals: true
     },
     toObject: {
-      transform: (_doc, ret) => omit<UserDocument>(ret, ["_id", "__v"]),
+      transform: (_doc, ret) => {
+        return omit<UserDocument>(ret, ["_id", "__v", "password"]);
+      },
       virtuals: true
     }
   }

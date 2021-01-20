@@ -5,7 +5,6 @@ import { Router } from "express";
 import { UserModel } from "../../models/user.model";
 
 import { handler } from "../../utils/handler";
-import { omit } from "../../utils/omit";
 
 import { validate } from "../../validators/register.validator";
 
@@ -25,7 +24,7 @@ route.post(
     const user = await UserModel.create({ password, username });
 
     return {
-      user: omit(user.toObject(), ["password"])
+      user
     };
   })
 );
