@@ -30,18 +30,16 @@ route.patch(
       throw new createError.BadRequest(`Semester '${id}' does not exist!`);
     }
 
-    if (classIds) {
-      if (classIds.length) {
-        const classes = await ClassModel.find({ _id: { $in: classIds } });
+    if (classIds && classIds.length > 0) {
+      const classes = await ClassModel.find({ _id: { $in: classIds } });
 
-        const ids = [
-          ...new Set<Types.ObjectId>(classes.map((c: ClassDocument) => c._id))
-        ];
+      const ids = [
+        ...new Set<Types.ObjectId>(classes.map((c: ClassDocument) => c._id))
+      ];
 
-        semester.set("classes", ids);
-      } else {
-        semester.set("classes", []);
-      }
+      semester.set("classes", ids);
+    } else {
+      semester.set("classes", []);
     }
 
     if (name && name !== semester.name) {
