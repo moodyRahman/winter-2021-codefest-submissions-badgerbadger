@@ -2,16 +2,20 @@ import Joi from "joi";
 
 import { CreateSemesterDto } from "@shared/dtos/create-semester.dto";
 
-export const validate = (payload: any): Partial<CreateSemesterDto> => {
+import objectId from "../utils/joi-object-id";
+
+export const validate = (
+  payload: unknown
+): Promise<Partial<CreateSemesterDto>> => {
   // prettier-ignore
   const schema = Joi.object<Partial<CreateSemesterDto>>({
     classes: Joi
       .array()
-      .items(Joi.string())
+      .items(Joi.string().custom(objectId))
       .max(30),
 
-    name: Joi.string(),
+    name: Joi.string()
   });
 
-  return schema.validate(payload).value;
+  return schema.validateAsync(payload);
 };

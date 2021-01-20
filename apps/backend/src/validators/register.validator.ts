@@ -2,7 +2,7 @@ import Joi from "joi";
 
 import { RegisterDto } from "@shared/dtos/register.dto";
 
-export const validate = (payload: any): RegisterDto => {
+export const validate = (payload: unknown): Promise<RegisterDto> => {
   // prettier-ignore
   const schema = Joi.object<RegisterDto>({
     password: Joi
@@ -15,8 +15,8 @@ export const validate = (payload: any): RegisterDto => {
       .alphanum()
       .min(4)
       .max(32)
-      .required(),
+      .required()
   });
 
-  return schema.validate(payload).value;
+  return schema.validateAsync(payload);
 };

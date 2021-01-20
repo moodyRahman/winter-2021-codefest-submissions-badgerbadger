@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { SemesterDocument, SemesterModel } from "../../models/semester.model";
+import { SemesterModel } from "../../models/semester.model";
 
 import { handler } from "../../utils/handler";
 
@@ -10,9 +10,7 @@ route.get(
   "/",
   handler(async (req) => {
     // TODO: Ideally it should return a paginated set of semesters since there is no limit on how much semesters a user can create
-    const semesters: SemesterDocument[] = await SemesterModel.find({
-      user: req.user.id
-    });
+    const semesters = await SemesterModel.find({ user: req.user.id });
 
     return {
       semesters

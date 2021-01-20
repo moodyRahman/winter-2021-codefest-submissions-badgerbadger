@@ -3,8 +3,10 @@ import createError from "http-errors";
 import { Router } from "express";
 import { Types } from "mongoose";
 
-import { ClassModel } from "../../models/class.model";
-import { SemesterDocument, SemesterModel } from "../../models/semester.model";
+import validateObjectId from "../../middlewares/validate-object-id.middleware";
+
+import { ClassDocument, ClassModel } from "../../models/class.model";
+import { SemesterModel } from "../../models/semester.model";
 
 import { handler } from "../../utils/handler";
 
@@ -14,14 +16,10 @@ const route = Router();
 
 route.patch(
   "/:id",
+  validateObjectId("id"),
   handler(async (req) => {
+    const { classes: classIds, name } = await validate(req.body);
     const { id } = req.params;
-
-    if (!Types.ObjectId.isValid(id)) {
-      throw new createError.BadRequest("Invalid semester ID!");
-    }
-
-    const { classes, name } = validate(req.body);
 
     const semester = await SemesterModel.findOne({
       _id: id,
@@ -32,22 +30,11 @@ route.patch(
       throw new createError.BadRequest(`Semester '${id}' does not exist!`);
     }
 
-    if (classes) {
-      for (const classId of classes) {
-        if (!Types.ObjectId.isValid(classId)) {
-          throw new createError.BadRequest(
-            `Class '${classId}' does not exist!`
-          );
-        }
-      }
+    if (classIds) {
+      const classes = await ClassModel.find({ _id: { $in: classIds } });
+      const ids = classes.map((c: ClassDocument) => c._id);
 
-      const count = await ClassModel.count({ _id: { $in: classes } });
-
-      if (count !== classes.length) {
-        throw new createError.BadRequest("One or more classes do not exist!");
-      }
-
-      semester.classes.addToSet(...classes);
+      semester.classes = new Types.Array(...ids);
     }
 
     if (name && name !== semester.name) {

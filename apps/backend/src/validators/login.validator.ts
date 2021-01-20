@@ -2,7 +2,7 @@ import Joi from "joi";
 
 import { LoginDto } from "@shared/dtos/login.dto";
 
-export const validate = (payload: any): LoginDto => {
+export const validate = (payload: unknown): Promise<LoginDto> => {
   // prettier-ignore
   const schema = Joi.object<LoginDto>({
     password: Joi
@@ -12,8 +12,8 @@ export const validate = (payload: any): LoginDto => {
     username: Joi
       .string()
       .lowercase()
-      .required(),
+      .required()
   });
 
-  return schema.validate(payload).value;
+  return schema.validateAsync(payload);
 };
