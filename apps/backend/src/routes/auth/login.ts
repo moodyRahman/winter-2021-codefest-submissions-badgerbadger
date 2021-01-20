@@ -24,10 +24,16 @@ route.post(
       throw new createError.Unauthorized("Invalid login credentials");
     }
 
+    const { accessToken, refreshToken } = config.get("jwt");
+
     return {
-      accessToken: jwt.sign({ user: user.id }, config.get("jwt_secret"), {
+      accessToken: jwt.sign({ user: user.id }, accessToken.secret, {
+        algorithm: "HS512", // Do we really need sha 512?
+        expiresIn: accessToken.expiresIn
+      }),
+      refreshToken: jwt.sign({ user: user.id }, refreshToken.secret, {
         algorithm: "HS512",
-        expiresIn: "1h"
+        expiresIn: refreshToken.expiresIn
       })
     };
   })

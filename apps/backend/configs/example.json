@@ -1,6 +1,15 @@
 {
   "bcrypt_cost": 12,
-  "jwt_secret": "secret",
+  "jwt": {
+    "accessToken": {
+      "expiresIn": "1h",
+      "secret": "access_token_secret"
+    },
+    "refreshToken": {
+      "expiresIn": "7d",
+      "secret": "refresh_token_secret"
+    }
+  },
   "mongo_uri": "mongodb://localhost:27017",
   "port": 8080
 }

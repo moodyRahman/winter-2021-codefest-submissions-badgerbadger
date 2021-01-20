@@ -3,7 +3,16 @@ import convict from "convict";
 export interface Config {
   bcrypt_cost: number;
   env: "development" | "production";
-  jwt_secret: string;
+  jwt: {
+    accessToken: {
+      expiresIn: string;
+      secret: string;
+    };
+    refreshToken: {
+      expiresIn: string;
+      secret: string;
+    };
+  };
   mongo_uri: string;
   port: number;
 }
@@ -21,16 +30,39 @@ const config = convict<Config>({
     env: "NODE_ENV",
     format: ["production", "development"]
   },
-  jwt_secret: {
-    doc: "The JWT secret.",
-    default: "",
-    env: "JWT_SECRET",
-    format: (value) => {
-      if (typeof value !== "string" || !value) {
-        throw new Error("must provide JWT secret as a string");
+  jwt: {
+    accessToken: {
+      expiresIn: {
+        default: "1h",
+        format: String
+      },
+      secret: {
+        default: "",
+        format(value: unknown) {
+          if (typeof value !== "string" || !value) {
+            throw new Error("must provide JWT access token secret as a string");
+          }
+        },
+        sensitive: true
       }
     },
-    sensitive: true
+    refreshToken: {
+      expiresIn: {
+        default: "7d",
+        format: String
+      },
+      secret: {
+        default: "",
+        format(value: unknown) {
+          if (typeof value !== "string" || !value) {
+            throw new Error(
+              "must provide JWT refresh token secret as a string"
+            );
+          }
+        },
+        sensitive: true
+      }
+    }
   },
   mongo_uri: {
     doc: "The mongo URI to connect to.",
