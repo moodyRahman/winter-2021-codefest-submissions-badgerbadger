@@ -29,7 +29,7 @@ export default function Login() {
 			if (response.status === 200) {
 				setToken(response.data.accessToken);
 				setLoggedin(username);
-				history.push("/filter")
+				history.push("/search")
 				console.log(response);
 				return console.log("LOGGED IN")
 			}
